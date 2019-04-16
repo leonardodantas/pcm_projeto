@@ -1,7 +1,7 @@
 <div class="text-center login imagem-fundo" >
   <form [formGroup]="formulario_logar" novalidate class="form-signin bg-login rounded shadow-lg  login-entrar " *ngIf="logar === true; else cadastrar" >
 
-    <h1 class="h2 mb-3 font-weight-bold text-white ">Entrar</h1>
+    <h1 class="h2 mb-3 font-weight-bold text-white " >Entrar</h1>
 
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" autofocus formControlName="email">
 
@@ -35,12 +35,15 @@
       </div>
     </div>
     <div>
+    <div class="pb-5" *ngIf="this.formulario_cadastro.controls.senha.value !== this.formulario_cadastro.controls.conf_senha.value  ">
+      <small class="text-danger"> As senhas devem ser iguais</small>
+    </div>
     <div class="row">
       <div class="col-md-6">
-        <button type="submit" class="btn btn-dark" >Cadastrar</button>
+        <button type="submit" class="btn btn-dark" [disabled]="!formulario_cadastro.valid" >Cadastrar</button>
       </div>
       <div class="col-md-6">
-        <button type="submit" class="btn btn-dark" >Logar</button>
+        <button type="submit" class="btn btn-dark" (click)="cadastrarLogar()">Logar</button>
       </div>
     </div>
     </div>

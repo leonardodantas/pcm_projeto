@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Autenticacao } from '../services/autenticacao.service'
+import { Usuario } from '../model/usuario';
+
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,7 @@ export class HomeComponent implements OnInit {
     'email': new FormControl(null,[Validators.required, Validators.minLength(10), Validators.email]),
     'nome': new FormControl(null, [Validators.required, Validators.minLength(10)]),
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-    'conf_senha': new FormControl(null)
+    'conf_senha': new FormControl(null,[Validators.required, Validators.minLength(6)])
   })
 
 
@@ -37,6 +40,13 @@ export class HomeComponent implements OnInit {
   }
 
   public entrar(): void{
+    let usuario: Usuario = new Usuario(
+      null,
+      '',
+      this.formulario_logar.value.email,
+      this.formulario_logar.value.senha
+    )
+
 
   }
 

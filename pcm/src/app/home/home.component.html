@@ -1,0 +1,50 @@
+<div class="text-center login imagem-fundo" >
+  <form [formGroup]="formulario_logar" novalidate class="form-signin bg-login rounded shadow-lg  login-entrar " *ngIf="logar === true; else cadastrar" >
+
+    <h1 class="h2 mb-3 font-weight-bold text-white ">Entrar</h1>
+
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email" autofocus formControlName="email">
+
+    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" formControlName="senha">
+
+    <button class="btn btn-lg btn-dark btn-block" type="submit" [disabled]="!this.formulario_logar.valid" (click)="entrar()">Entrar</button>
+    <a class="mt-5 mb-3 btn  btn-dark text-white" (click)="cadastrarLogar()" >Cadastre-se</a>
+</form>
+<ng-template #cadastrar>
+
+  <form [formGroup]="formulario_cadastro" novalidate class="form-signin bg-login rounded shadow-lg login-entrar ">
+    <h1 class="h2 mb-3 font-weight-bold text-white ">Cadastrar</h1>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <input type="text" class="form-control" placeholder="Nome Completo" formControlName="nome">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <input type="email" class="form-control" placeholder="Email" formControlName="email">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <input type="password" class="form-control" placeholder="Senha" formControlName="senha">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <input type="password" class="form-control" placeholder="Confirmar Senha" formControlName="conf_senha">
+      </div>
+    </div>
+    <div>
+    <div class="row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-dark" >Cadastrar</button>
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-dark" >Logar</button>
+      </div>
+    </div>
+    </div>
+  </form>
+</ng-template>
+
+</div>

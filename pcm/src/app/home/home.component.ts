@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Autenticacao } from '../services/autenticacao.service'
 import { Usuario } from '../model/usuario';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [Autenticacao]
 })
 export class HomeComponent implements OnInit {
 
@@ -24,7 +24,9 @@ export class HomeComponent implements OnInit {
   })
 
 
-  constructor() { }
+  constructor(
+    private autenticacaoService : Autenticacao
+  ) { }
 
   ngOnInit() {
 
@@ -46,8 +48,15 @@ export class HomeComponent implements OnInit {
       this.formulario_logar.value.email,
       this.formulario_logar.value.senha
     )
+    this.autenticacaoService.autenticar(usuario).subscribe(
+      (usuario: Usuario)=>{
+        console.log(usuario)
+      }
+    )
+  }
 
-
+  public confirmPassword(): boolean{
+    return  !(this.formulario_cadastro.controls.senha.value === this.formulario_cadastro.controls.conf_senha.value) && (this.formulario_cadastro.controls.senha.value !== undefined)
   }
 
 }

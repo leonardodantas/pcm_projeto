@@ -16,21 +16,27 @@ import { ROUTES } from './app.routes';
 import {APP_BASE_HREF} from '@angular/common';
 import { AutenticacaoGuardServiceAdm } from './services/autenticacao-guard-adm.service';
 import { Autenticacao } from './services/autenticacao.service';
+import { MenuAdmComponent } from './adm/menu-adm/menu-adm.component';
+import { NovosUsuariosComponent } from './adm/novos-usuarios/novos-usuarios.component';
+import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdmComponent
+    AdmComponent,
+    MenuAdmComponent,
+    NovosUsuariosComponent,
+    HomeAdmComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, {useHash : true}),
     ReactiveFormsModule,
     HttpModule,
 
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''}, AutenticacaoGuardServiceAdm, Autenticacao],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}, AutenticacaoGuardServiceAdm, Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

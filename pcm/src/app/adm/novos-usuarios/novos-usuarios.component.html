@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="jumbotron" style="background-color:white">
+    <div *ngIf="qtdUsuario === undefined;else listarUsuarios" class="alert alert-danger" role="alert">
+      Nenhum usuário atualmente
+    </div>
+    <ng-template #listarUsuarios>
+    <table class="table table-bordered table-info">
+      <thead>
+        <tr>
+          <th >ID</th>
+          <th>NOME</th>
+          <th >EMAIL</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <th> {{ usuario.id}} </th>
+          <td> {{ usuario.nome }} </td>
+          <td> {{ usuario.email }} </td>
+        </tr>
+      </tbody>
+    </table>
+    </ng-template>
+  </div>
+</div>

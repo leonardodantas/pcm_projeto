@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info mb-4">
+  <a class="navbar-brand" routerLink="/adm">Inicio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#" routerLink="novosUsuarios">Novos Usuarios <span class="badge badge-light">{{ qtdUsuarios }}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <div class="form-inline text-white">
+      <button class="btn btn-light" (click)="sair()">SAIR</button>
+    </div>
+  </div>
+</nav>

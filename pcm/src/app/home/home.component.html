@@ -17,6 +17,12 @@
 
   <form [formGroup]="formulario_cadastro" novalidate class="form-signin bg-login rounded shadow-lg login-entrar ">
     <h1 class="h2 mb-3 font-weight-bold text-white ">Cadastrar</h1>
+    <div class="alert alert-success" role="alert" *ngIf="cadastroBd === true">
+      Cadastro realizado com sucesso, aguarde aprovação
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="cadastroBd === false">
+      Erro ao realizar cadastro
+    </div>
     <div class="form-row">
       <div class="form-group col-md-12">
         <input type="text" class="form-control" placeholder="Nome Completo" formControlName="nome">

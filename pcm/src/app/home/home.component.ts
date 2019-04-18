@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   public logar: boolean = true
   public erroLogar: boolean
+  public cadastroBd: boolean
   public formulario_logar = new FormGroup({
     'email': new FormControl(null, [Validators.required,Validators.minLength(10), Validators.email]),
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -48,11 +49,17 @@ export class HomeComponent implements OnInit {
 
     this.autenticacaoService.inserirUsuario(usuario).subscribe(
       (usuario: Usuario)=>{
-
+        this.cadastroBd = true
       },
       (erro: any)=>{{
-        console.log('deu errado')
-      }}
+        this.cadastroBd = false
+      }},
+      ()=>{
+        this.formulario_cadastro.reset()
+        setTimeout(()=>{
+          this.cadastrarLogar()
+        },5000)
+      }
     )
 
   }

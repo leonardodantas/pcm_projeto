@@ -37,6 +37,23 @@ export class HomeComponent implements OnInit {
   }
 
   public cadastrarUsuario(): void{
+    let usuario: Usuario =  new Usuario(
+      null,
+      3,
+      null,
+      this.formulario_cadastro.value.nome,
+      this.formulario_cadastro.value.email,
+      this.formulario_cadastro.value.senha
+    )
+
+    this.autenticacaoService.inserirUsuario(usuario).subscribe(
+      (usuario: Usuario)=>{
+
+      },
+      (erro: any)=>{{
+        console.log('deu errado')
+      }}
+    )
 
   }
 
@@ -56,13 +73,23 @@ export class HomeComponent implements OnInit {
     this.autenticacaoService.autenticar(usuario).subscribe(
       (usuario: Usuario)=>{
         localStorage.setItem("idUsuario", usuario[0].id)
+        localStorage.setItem("idCargo", usuario[0].fk_cargo_usuario)
         this.router.navigate(['/adm'])
       },
       (err: any)=>{
         this.erroLogar = true
         this.formulario_logar.controls.senha.reset()
+      },
+      ()=>{
+        this.verificarAreaAcesso(usuario.id)
       }
     )
+  }
+
+  public verificarAreaAcesso(id): void{
+    if(id === 4){
+      this.router.navigate(['/adm'])
+    }
   }
 
   public confirmPassword(): boolean{

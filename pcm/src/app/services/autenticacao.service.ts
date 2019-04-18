@@ -3,15 +3,31 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http'
 import { Observable } from "rxjs";
 import { map, catchError } from 'rxjs/operators'
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class Autenticacao{
 
-  //public tokenId
+  public tokenId
 
   constructor(
-    private http: Http
+    private http: Http,
+    private route: Router
   ){}
+
+  public inserirUsuario(usuario: Usuario): Observable<Usuario>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.post('http://localhost:3000/user',
+    JSON.stringify(usuario),
+    new RequestOptions({ headers : headers })
+    ).pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((erro: any)=>{
+      return erro
+    })))
+  }
 
   public autenticar(usuario: Usuario): Observable<any>{
 
@@ -30,14 +46,14 @@ export class Autenticacao{
 
   public autenticarAdm(): boolean{
 
-    //if(this.tokenId === undefined && localStorage.getItem('idToken') != null){
-      //this.tokenId = localStorage.getItem('idToken')
-   // }
-    //if(this.tokenId === undefined){
-      //this.route.navigate(['/'])
-    //}
+    if(this.tokenId === undefined && localStorage.getItem('idUsuario') != null && localStorage.getItem('idCargo') === '4'){
+      this.tokenId = localStorage.getItem('idUsuario')
+    }
+    if(this.tokenId === undefined){
+      this.route.navigate(['/'])
+    }
 
-    return true
+    return this.tokenId !== undefined
 
   }
 

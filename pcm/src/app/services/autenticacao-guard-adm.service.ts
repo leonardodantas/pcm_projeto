@@ -3,13 +3,13 @@ import { CanActivate } from '@angular/router'
 import { Autenticacao } from "./autenticacao.service";
 
 @Injectable()
-export class AutenticacaoGuardService{
+export class AutenticacaoGuardServiceAdm{
 
   constructor(
     private autenticacaoService: Autenticacao
   ){}
 
-  //public autenticarAdm(): boolean{
-    //return this.autenticacaoService.autenticarAdm()
-  //}
+  canActivate(): boolean{
+    return this.autenticacaoService.autenticarAdm()
+  }
 }

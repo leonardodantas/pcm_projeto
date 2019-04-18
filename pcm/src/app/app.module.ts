@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 import {APP_BASE_HREF} from '@angular/common';
+import { AutenticacaoGuardServiceAdm } from './services/autenticacao-guard-adm.service';
+import { Autenticacao } from './services/autenticacao.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import {APP_BASE_HREF} from '@angular/common';
     HttpModule,
 
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: ''}],
+  providers: [{provide: APP_BASE_HREF, useValue: ''}, AutenticacaoGuardServiceAdm, Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -7,6 +7,8 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class Autenticacao{
 
+  //public tokenId
+
   constructor(
     private http: Http
   ){}
@@ -19,11 +21,23 @@ export class Autenticacao{
     JSON.stringify(usuario),
     new RequestOptions({ headers : headers })
     ).pipe(map((respose: Response)=>{
-      console.log(respose)
       return respose.json()
     }, catchError((erro: any)=>{
       return erro
     })))
+
+  }
+
+  public autenticarAdm(): boolean{
+
+    //if(this.tokenId === undefined && localStorage.getItem('idToken') != null){
+      //this.tokenId = localStorage.getItem('idToken')
+   // }
+    //if(this.tokenId === undefined){
+      //this.route.navigate(['/'])
+    //}
+
+    return true
 
   }
 

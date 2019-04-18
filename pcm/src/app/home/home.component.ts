@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Autenticacao } from '../services/autenticacao.service'
 import { Usuario } from '../model/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { Usuario } from '../model/usuario';
 export class HomeComponent implements OnInit {
 
   public logar: boolean = true
+  public erroLogar: boolean
   public formulario_logar = new FormGroup({
     'email': new FormControl(null, [Validators.required,Validators.minLength(10), Validators.email]),
     'senha': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -25,7 +27,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private autenticacaoService : Autenticacao
+    private autenticacaoService : Autenticacao,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,13 +47,20 @@ export class HomeComponent implements OnInit {
   public entrar(): void{
     let usuario: Usuario = new Usuario(
       null,
+      null,
+      '',
       '',
       this.formulario_logar.value.email,
       this.formulario_logar.value.senha
     )
     this.autenticacaoService.autenticar(usuario).subscribe(
       (usuario: Usuario)=>{
-        console.log(usuario)
+        localStorage.setItem("idUsuario", usuario[0].id)
+        this.router.navigate(['/adm'])
+      },
+      (err: any)=>{
+        this.erroLogar = true
+        this.formulario_logar.controls.senha.reset()
       }
     )
   }

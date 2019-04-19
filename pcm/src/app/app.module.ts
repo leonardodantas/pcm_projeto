@@ -31,12 +31,12 @@ import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES, {useHash : true}),
+    RouterModule.forRoot(ROUTES, {useHash: true}),
     ReactiveFormsModule,
     HttpModule,
 
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}, AutenticacaoGuardServiceAdm, Autenticacao],
+  providers: [ AutenticacaoGuardServiceAdm, Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

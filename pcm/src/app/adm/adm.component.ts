@@ -10,7 +10,7 @@ export class AdmComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("AMD")
+
   }
 
 }

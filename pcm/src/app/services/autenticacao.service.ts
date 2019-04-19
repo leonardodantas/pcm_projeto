@@ -53,7 +53,7 @@ export class Autenticacao{
       this.route.navigate(['/'])
     }
 
-    return this.tokenId !== undefined
+    return localStorage.getItem('idUsuario') !== null
 
   }
 

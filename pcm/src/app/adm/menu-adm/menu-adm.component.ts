@@ -30,9 +30,12 @@ export class MenuAdmComponent implements OnInit {
   }
 
   public sair(): void{
+
     localStorage.removeItem("idUsuario")
     localStorage.removeItem("idCargo")
+    localStorage.clear()
     this.route.navigate(['/'])
+
   }
 
 }

@@ -32,8 +32,10 @@ export class NovosUsuariosComponent implements OnInit {
         this.usuarios = usuarios
       }
     )
+  }
 
-
+  public editarUsuario(usuario: Usuario): void{
+    console.log(usuario)
   }
 
 }

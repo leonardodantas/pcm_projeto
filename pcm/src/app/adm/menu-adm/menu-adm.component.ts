@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usuario } from 'src/app/model/usuario';
 import { RealTime } from 'src/app/services/realdate.service';
@@ -36,25 +36,6 @@ export class MenuAdmComponent implements OnInit{
         this.realTime.popularQtdUser(this.qtdUsuarios)
       }
     )
-
-  }
-
-  ngOnChanges(){
-    console.log('on changes')
-    //this.realTime.getQtd()
-  }
-
-  public atualizarQtdUser(): void{
-    console.log("LEONARDO DANTAS")
-  }
-
-
-
-  public diminuirUsuarios(): void{
-    this.qtdUsuarios -= 1
-  }
-
-  public atualizarQuantidade(): void{
 
   }
 

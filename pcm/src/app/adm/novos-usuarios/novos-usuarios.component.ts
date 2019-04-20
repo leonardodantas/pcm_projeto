@@ -17,13 +17,14 @@ export class NovosUsuariosComponent implements OnInit {
 
   public usuarios :Usuario[]
   public usuario: Usuario
-  public qtdUsuario: number = 1
+  public qtdUsuario: number = 0
   public editUser: boolean = false
   public cargos: Cargos[]
   public inserirUser: boolean
   public deletarUser: boolean
   public atualizarQtd: boolean
-  @Output() public atualizarQtdUser: EventEmitter<any> =  new EventEmitter<any>()
+  public deleteSuccess: boolean
+  public validaSuccess: boolean
 
   public atualizarUser = new FormGroup({
     'nome': new FormControl(null),
@@ -50,18 +51,9 @@ export class NovosUsuariosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioService.getQtdId().subscribe(
-      (qtd: number)=>{
-
-        this.qtdUsuario = (qtd > 0) ? qtd : undefined
-
-      }
-    )
-
     this.usuarioService.getUsers().subscribe(
       (usuarios: Usuario[])=>{
         this.usuarios = usuarios
-        this.qtdUsuario = usuarios.length
       }
     )
   }
@@ -88,8 +80,6 @@ export class NovosUsuariosComponent implements OnInit {
     this.atualizarUser.controls.nome.setValue(usuario.nome)
     this.atualizarUser.controls.email.setValue(usuario.email)
     this.usuario = usuario
-    //this.route
-
   }
 
   public cancelarInserir(): void{
@@ -109,6 +99,25 @@ export class NovosUsuariosComponent implements OnInit {
 
   }
 
+  public validarFunc(): void{
+    this.inserirUser = false
+    let index = this.usuarios.indexOf(this.usuario)
+    this.usuarios.splice(index,1)
+    this.usuarioService.validarUser(this.usuario).subscribe(
+      (response: any)=>{
+        this.validaSuccess = true
+        setTimeout(()=>{
+          this.validaSuccess = undefined
+        },3000)
+        this.realTime.removeQtd()
+        this.qtdUsuario = this.qtdUsuario - 1
+      },
+      (err: any)=>{
+        console.log(err)
+      }
+    )
+  }
+
   public deletarUsuario(): void{
     this.editUser = false
     this.deletarUser = true
@@ -126,14 +135,16 @@ export class NovosUsuariosComponent implements OnInit {
     this.deletarUser = false
     let index = this.usuarios.indexOf(this.usuario)
     this.usuarios.splice(index,1)
-    //this.usuarioService.delete(this.usuario.id).subscribe(
-      //(user: any)=>{
+    this.usuarioService.delete(this.usuario.id).subscribe(
+      (user: any)=>{
+        this.deleteSuccess = true
+        setTimeout(() => {
+          this.deleteSuccess = undefined
+        }, 3000);
         this.realTime.removeQtd()
         this.qtdUsuario = this.qtdUsuario - 1
-      //}
-    //)
-    //let qtd = this.usuarios.length
-    //console.log(this.route.navigate(['adm']))
+      }
+    )
 
   }
 }

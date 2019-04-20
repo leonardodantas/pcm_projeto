@@ -38,7 +38,7 @@
         <small>Deseja mesmo validar o usuário?</small>
       </div>
       <div class="text-center">
-        <button class="btn btn-info " (click)="validarUser()" >Validar usuário</button>
+        <button class="btn btn-info " (click)="validarFunc()" >Validar usuário</button>
         <button class="btn btn-info m-1" [disabled]="inserirUser">Deletar usuário</button>
         <button class="btn btn-info" (click)="cancelarInserir()">Cancelar</button>
       </div>
@@ -67,6 +67,12 @@
       Nenhum usuário atualmente
     </div>
     <ng-template #listarUsuarios>
+    <div class="alert alert-success" role="alert" *ngIf="deleteSuccess === true">
+      Usuário deletado com sucesso
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="validaSuccess === true">
+        Usuário validado com sucesso
+      </div>
     <table class="table table-bordered table-info">
       <thead>
         <tr>

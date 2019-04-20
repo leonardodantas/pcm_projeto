@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map, catchError } from 'rxjs/operators'
 import { Usuario } from "../model/usuario";
-import { Http, Response } from "@angular/http";
+import { Http, Response, RequestOptions, Headers } from "@angular/http";
 
 @Injectable()
 export class UsuariosService{
@@ -20,22 +20,28 @@ export class UsuariosService{
     })))
   }
 
-  public getQtdId(): Observable<number>{
-    return this.http.get('http://localhost:3000/userqtd')
-    .pipe(map((response: Response)=>{
-      let qtd: number = response.json()[0].count
-      return qtd
-    },catchError((erro: any)=>{
-      return erro
-    })))
-  }
-
   public delete(id: number): Observable<any>{
     return this.http.delete('http://localhost:3000/user/' + id)
     .pipe(map((response: Response)=>{
       this.getUsers()
       return response
     }, catchError((err: any)=>{
+      return err
+    })))
+  }
+
+  public validarUser(usuario: Usuario): Observable<any>{
+    let body = JSON.stringify(usuario)
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+
+    return this.http.put('http://localhost:3000/user',
+    body,
+    new RequestOptions({ headers : headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err: any)=>{
+
       return err
     })))
   }

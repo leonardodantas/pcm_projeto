@@ -20,6 +20,9 @@ import { MenuAdmComponent } from './adm/menu-adm/menu-adm.component';
 import { NovosUsuariosComponent } from './adm/novos-usuarios/novos-usuarios.component';
 import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
 
+import { DadosService } from './dados.service';
+import { RealTime } from './services/realdate.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,7 @@ import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
     HttpModule,
 
   ],
-  providers: [ AutenticacaoGuardServiceAdm, Autenticacao],
+  providers: [ RealTime,{provide: DadosService, useValue: DadosService},AutenticacaoGuardServiceAdm, Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

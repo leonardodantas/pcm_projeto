@@ -9,6 +9,7 @@ export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
   {path:'adm', component: AdmComponent, canActivate: [AutenticacaoGuardServiceAdm], children:[
     {path: '', component: HomeAdmComponent},
-    {path: 'novosUsuarios', component: NovosUsuariosComponent}
+    {path: 'novosUsuarios', component: NovosUsuariosComponent},
+    {path: 'novosUsuarios/:qtd', component: NovosUsuariosComponent}
  ] }
 ]

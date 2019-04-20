@@ -10,7 +10,10 @@ export class AdmComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //this.atualizarQtdUser()
 
   }
+
+
 
 }

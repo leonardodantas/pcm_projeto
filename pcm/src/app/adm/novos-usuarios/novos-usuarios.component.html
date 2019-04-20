@@ -1,6 +1,69 @@
 <div class="container">
   <div class="jumbotron" style="background-color:white">
-    <div *ngIf="qtdUsuario === undefined;else listarUsuarios" class="alert alert-danger" role="alert">
+
+    <form [formGroup]="atualizarUser" class="mb-5" *ngIf="editUser === true">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" readonly  formControlName="nome">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" readonly formControlName="email">
+        </div>
+      </div>
+      <div class="form-group mt-2">
+        <select id="disabledSelect" class="form-control" formControlName="cargo">
+          <option *ngFor="let cargo of cargos" value="{{cargo.id}}"> {{cargo.cargo}} </option >
+        </select>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-info " (click)="validarUser()" [disabled]="!atualizarUser.valid">Validar usuário</button>
+        <button class="btn btn-info m-1" (click)="deletarUsuario()">Deletar usuário</button>
+        <button class="btn btn-info" (click)="cancelarEdit()">Cancelar</button>
+      </div>
+    </form>
+
+    <form [formGroup]="inserirUserForm" class="mb-5" *ngIf="inserirUser === true">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" readonly  formControlName="nome">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" readonly formControlName="email">
+        </div>
+      </div>
+      <div class="form-group mt-2">
+          <input type="text" class="form-control" readonly formControlName="cargo">
+      </div>
+      <div class="text-center mb-2 text-danger">
+        <small>Deseja mesmo validar o usuário?</small>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-info " (click)="validarUser()" >Validar usuário</button>
+        <button class="btn btn-info m-1" [disabled]="inserirUser">Deletar usuário</button>
+        <button class="btn btn-info" (click)="cancelarInserir()">Cancelar</button>
+      </div>
+    </form>
+
+    <form [formGroup]="deletarUserForm" class="mb-5" *ngIf="deletarUser === true">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" readonly  formControlName="nome">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" readonly formControlName="email">
+          </div>
+        </div>
+        <div class="text-center mb-1 mt-1 text-danger">
+          <small>Deseja mesmo deletar o usuário?</small>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-info " (click)="validarUser()" [disabled]="deletarUser">Validar usuário</button>
+          <button class="btn btn-info m-1"  (click)="delete()">Deletar usuário</button>
+          <button class="btn btn-info" (click)="cancelarDeletar()">Cancelar</button>
+        </div>
+      </form>
+
+    <div *ngIf="qtdUsuario === 0;else listarUsuarios" class="alert alert-danger" role="alert">
       Nenhum usuário atualmente
     </div>
     <ng-template #listarUsuarios>
@@ -19,7 +82,7 @@
           <th> {{ usuario.id}} </th>
           <td> {{ usuario.nome }} </td>
           <td> {{ usuario.email }} </td>
-          <td> <button class="btn" (click)="editarUsuario(usuario)" ><i class="fas fa-eye"></i></button></td>
+          <td> <button class="btn" [disabled]="editUser" (click)="editarUsuario(usuario)" ><i class="fas fa-eye"></i></button></td>
         </tr>
       </tbody>
     </table>

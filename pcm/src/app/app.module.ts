@@ -22,6 +22,7 @@ import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
 
 import { DadosService } from './dados.service';
 import { RealTime } from './services/realdate.service';
+import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RealTime } from './services/realdate.service';
     AdmComponent,
     MenuAdmComponent,
     NovosUsuariosComponent,
-    HomeAdmComponent
+    HomeAdmComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,15 @@ export class UsuariosService{
     })))
   }
 
+  public getAllUsers(): Observable<Usuario[]>{
+    return this.http.get('http://localhost:3000/userAll')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((erro: any)=>{
+      return erro
+    })))
+  }
+
   public delete(id: number): Observable<any>{
     return this.http.delete('http://localhost:3000/user/' + id)
     .pipe(map((response: Response)=>{

@@ -6,12 +6,14 @@ import { Cargos } from 'src/app/model/cargos';
 import { CargosService } from 'src/app/services/cargos.service';
 import { Router } from '@angular/router';
 import { RealTime } from 'src/app/services/realdate.service';
+import { FuncoesService } from 'src/app/services/funcoes.service';
+import { Funcao } from 'src/app/model/funcao';
 
 @Component({
   selector: 'app-novos-usuarios',
   templateUrl: './novos-usuarios.component.html',
   styleUrls: ['./novos-usuarios.component.css'],
-  providers: [UsuariosService, CargosService]
+  providers: [UsuariosService, CargosService, FuncoesService]
 })
 export class NovosUsuariosComponent implements OnInit {
 
@@ -20,6 +22,7 @@ export class NovosUsuariosComponent implements OnInit {
   public qtdUsuario: number = 0
   public editUser: boolean = false
   public cargos: Cargos[]
+  public funcoes: Funcao[]
   public inserirUser: boolean
   public deletarUser: boolean
   public atualizarQtd: boolean
@@ -29,31 +32,44 @@ export class NovosUsuariosComponent implements OnInit {
   public atualizarUser = new FormGroup({
     'nome': new FormControl(null),
     'email': new FormControl(null),
-    'cargo': new FormControl(null, Validators.required)
+    'cargo': new FormControl(null, Validators.required),
+    'funcao': new FormControl(null, Validators.required)
   })
   public inserirUserForm = new FormGroup({
     'nome': new FormControl(null),
     'email': new FormControl(null),
-    'cargo': new FormControl(null, Validators.required)
+    'cargo': new FormControl(null, Validators.required),
+    'funcao': new FormControl(null, Validators.required)
   })
   public deletarUserForm = new FormGroup({
     'nome': new FormControl(null),
     'email': new FormControl(null),
-    'cargo': new FormControl(null, Validators.required)
+    'cargo': new FormControl(null, Validators.required),
+
   })
+
+
 
   constructor(
     private usuarioService: UsuariosService,
     private cargosService: CargosService,
-    private route: Router,
+    private funcoesService: FuncoesService,
     private realTime: RealTime
   ) { }
 
   ngOnInit() {
 
+    this.funcoesService.get().subscribe(
+      (funcoes: Funcao[])=>{
+        this.funcoes = funcoes
+        console.log(this.funcoes)
+      }
+    )
+
     this.usuarioService.getUsers().subscribe(
       (usuarios: Usuario[])=>{
         this.usuarios = usuarios
+        this.qtdUsuario = usuarios.length
       }
     )
   }
@@ -68,6 +84,7 @@ export class NovosUsuariosComponent implements OnInit {
 
   public cancelarEdit(): void{
     this.visualizarEditarUser()
+    this.resetForms()
   }
 
   public visualizarEditarUser(): void{
@@ -85,6 +102,7 @@ export class NovosUsuariosComponent implements OnInit {
   public cancelarInserir(): void{
     this.inserirUser = false
     this.editUser = true
+    this.resetForms()
   }
 
   public validarUser(): void{
@@ -128,6 +146,7 @@ export class NovosUsuariosComponent implements OnInit {
   public cancelarDeletar(): void{
     this.editUser = true
     this.deletarUser = false
+    this.resetForms()
   }
 
   public delete(): void{
@@ -146,5 +165,11 @@ export class NovosUsuariosComponent implements OnInit {
       }
     )
 
+  }
+
+  public resetForms(): void{
+    this.inserirUserForm.reset()
+    this.atualizarUser.reset()
+    this.deletarUserForm.reset()
   }
 }

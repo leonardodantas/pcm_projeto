@@ -20,9 +20,10 @@ import { MenuAdmComponent } from './adm/menu-adm/menu-adm.component';
 import { NovosUsuariosComponent } from './adm/novos-usuarios/novos-usuarios.component';
 import { HomeAdmComponent } from './adm/home-adm/home-adm.component';
 
-import { DadosService } from './dados.service';
 import { RealTime } from './services/realdate.service';
 import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
+import { FooterComponent } from './footer/footer.component';
+import { FuncoesComponent } from './adm/home-adm/funcoes/funcoes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
     MenuAdmComponent,
     NovosUsuariosComponent,
     HomeAdmComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    FooterComponent,
+    FuncoesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
     HttpModule,
 
   ],
-  providers: [ RealTime,{provide: DadosService, useValue: DadosService},AutenticacaoGuardServiceAdm, Autenticacao],
+  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

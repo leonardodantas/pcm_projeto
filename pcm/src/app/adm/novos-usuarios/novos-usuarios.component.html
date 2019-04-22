@@ -12,7 +12,14 @@
       </div>
       <div class="form-group mt-2">
         <select id="disabledSelect" class="form-control" formControlName="cargo">
+            <option value="" disabled >Será referente a atuação do usuário no sistema</option>
           <option *ngFor="let cargo of cargos" value="{{cargo.id}}"> {{cargo.cargo}} </option >
+        </select>
+      </div>
+      <div class="form-group mt-2">
+        <select id="disabledSelect" class="form-control" formControlName="funcao" >
+            <option value="" disabled >Será referente a função exercida por ele</option>
+          <option *ngFor="let funcao of funcoes" value="{{funcao.id}}"> {{funcao.funcao }} </option >
         </select>
       </div>
       <div class="text-center">

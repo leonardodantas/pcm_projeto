@@ -1,3 +1,59 @@
-<p>
-  usuarios works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="{{classTabela}}">
+        <table class="table table-bordered table-sm bg-info ">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Função</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let usuario of usuarios" class="text-white">
+                <td> <button class="btn btn-info btn-sm" (click)="exibirDados(usuario)"> {{usuario.nome}} </button>  </td>
+                <td> {{usuario.cargo}}</td>
+                <td> {{usuario.funcao}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="{{classEdit}}" >
+      <div class="border border-secondary rounded bg-light p-3">
+      <button type="button" class="close mt-2" (click)="exibirTabela()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h1 class="text-center">Dados Usuário</h1>
+      <form [formGroup]="formVisualizarUser" >
+        <div class="form-row mt-5">
+          <div class="form-group col-md-6">
+            <label >Nome</label>
+            <input type="text" class="form-control" formControlName="nome">
+          </div>
+          <div class="form-group col-md-6">
+            <label >Email</label>
+            <input type="email" class="form-control" formControlName="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label >Cargo</label>
+            <input type="text" class="form-control" formControlName="cargo">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState">Função</label>
+            <input type="text" class="form-control" formControlName="funcao">
+          </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-secondary mr-1">Editar</button>
+            <button type="button" class="btn btn-secondary  ml-1">Deletar</button>
+        </div>
+      </form>
+    </div>
+    <div class="border border-secondary rounded bg-light p-3 mt-2">
+      <h1 class="text-center">Pendências</h1>
+    </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <form [formGroup]="formFuncao" class="mb-3">
+        <div class="form-group">
+          <label >Nova Função</label>
+          <input class="form-control" autofocus formControlName="funcao">
+        </div>
+        <button type="submit" [disabled]="!formFuncao.valid" (click)="inserirFuncao()" class="btn btn-primary">Inserir</button>
+    </form>
+    <table class="table table-bordered bg-info">
+        <thead>
+          <tr>
+            <th scope="col">Função</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let funcao of funcoes">
+            <td> {{ funcao.funcao }} </td>
+            <td> <button class="btn btn-primary">Editar</button> </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

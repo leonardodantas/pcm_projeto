@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
       null,
       3,
       null,
+      null,
+      '',
       this.formulario_cadastro.value.nome,
       this.formulario_cadastro.value.email,
       this.formulario_cadastro.value.senha
@@ -71,6 +73,8 @@ export class HomeComponent implements OnInit {
   public entrar(): void{
     let usuario: Usuario = new Usuario(
       null,
+      null,
+      '',
       null,
       '',
       '',

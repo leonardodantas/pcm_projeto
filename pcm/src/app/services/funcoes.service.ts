@@ -20,8 +20,8 @@ export class FuncoesService{
     })))
   }
 
-  public post(funcao: string): Observable<any>{
-    console.log(JSON.stringify(funcao))
+  public post(funcao: Funcao): Observable<any>{
+
     let headers = new Headers()
     headers.append('Content-type', 'application/json')
     return this.http.post('http://localhost:3000/funcao',
@@ -34,5 +34,30 @@ export class FuncoesService{
       return err
     })))
 
+  }
+
+  public delete(id: number): Observable<any>{
+    return this.http.delete('http://localhost:3000/funcao/' + id)
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public put(funcao: Funcao): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+
+    return this.http.put('http://localhost:3000/funcao',
+    JSON.stringify(funcao),
+    new RequestOptions({ headers : headers})
+    )
+    .pipe(map((response: any)=>{
+      return response
+    }, catchError((err: any)=>{
+      return err
+    })))
   }
 }

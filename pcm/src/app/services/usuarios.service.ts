@@ -40,6 +40,7 @@ export class UsuariosService{
   }
 
   public validarUser(usuario: Usuario): Observable<any>{
+
     let body = JSON.stringify(usuario)
     let headers = new Headers()
     headers.append('Content-type', 'application/json')

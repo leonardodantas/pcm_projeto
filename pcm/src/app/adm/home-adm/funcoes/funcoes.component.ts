@@ -85,9 +85,14 @@ export class FuncoesComponent implements OnInit {
   }
 
   public editarFuncao(): void{
+    this.funcao.funcao = this.formFuncaoEditar.controls.funcao.value;
     this.funcaoService.put(this.funcao).subscribe(
       (response: any)=>{
-        console.log(response)
+        this.updateSuccess = true
+        this.editarFunc = false
+        setTimeout(() => {
+          this.updateSuccess = false
+        }, 4000);
       }
     )
   }

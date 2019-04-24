@@ -1,0 +1,47 @@
+<div class="container">
+  <form [formGroup]="formEquipamento" class="mb-3" *ngIf="inserir === true">
+      <div class="form-group">
+        <label >Novo Equipamento</label>
+        <input class="form-control" autofocus formControlName="equipamento">
+      </div>
+      <button type="submit" [disabled]="!formEquipamento.valid" class="btn btn-primary">Inserir</button>
+  </form>
+  <form [formGroup]="formEquipEditar" class="mb-3" *ngIf="editarEquip === true">
+      <div class="form-group">
+        <label >Editar Função</label>
+        <input class="form-control" autofocus formControlName="equipamento">
+      </div>
+      <button type="submit" [disabled]="!formEquipEditar.valid" class="btn btn-primary">Editar</button>
+  </form>
+  <div>
+    <button class="btn btn-info" (click)="validInserir()">Inserir</button>
+  </div>
+  <div class="alert alert-success mt-2" role="alert" *ngIf="insertSuccess === true">
+    Função inserida com sucesso
+  </div>
+  <div class="alert alert-success mt-2" role="alert" *ngIf="deleteSuccess === true">
+      Função deletada com sucesso
+  </div>
+  <div class="alert alert-success mt-2" role="alert" *ngIf="updateSuccess === true">
+    Função editada com sucesso
+  </div>
+  <table class="table table-bordered bg-info">
+      <thead>
+        <tr>
+          <th scope="col">Equipamento</th>
+          <th scope="col" class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcao of funcoes">
+          <td> {{ equipamento.equipamento }} </td>
+          <td> <div class="text-center">
+            <button class="btn btn-primary mr-1" (click)="editar(equipamento)">Editar</button>
+            <button class="btn btn-danger ml-1" (click)="deletar(equipamento.id)">Deletar</button>
+          </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+

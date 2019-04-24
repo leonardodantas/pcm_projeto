@@ -24,6 +24,7 @@ import { RealTime } from './services/realdate.service';
 import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
 import { FooterComponent } from './footer/footer.component';
 import { FuncoesComponent } from './adm/home-adm/funcoes/funcoes.component';
+import { EquipamentoComponent } from './adm/home-adm/equipamento/equipamento.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FuncoesComponent } from './adm/home-adm/funcoes/funcoes.component';
     HomeAdmComponent,
     UsuariosComponent,
     FooterComponent,
-    FuncoesComponent
+    FuncoesComponent,
+    EquipamentoComponent
   ],
   imports: [
     BrowserModule,

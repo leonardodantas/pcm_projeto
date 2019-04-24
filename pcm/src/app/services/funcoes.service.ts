@@ -45,7 +45,7 @@ export class FuncoesService{
     })))
   }
 
-  public put(funcao: Funcao): Observable<Response>{
+  public put(funcao: Funcao): Observable<any>{
 
     let headers = new Headers()
     headers.append('Content-type', 'application/json')
@@ -54,7 +54,7 @@ export class FuncoesService{
     JSON.stringify(funcao),
     new RequestOptions({ headers : headers})
     )
-    .pipe(map((response: any)=>{
+    .pipe(map((response: Response)=>{
       return response
     }, catchError((err: any)=>{
       return err

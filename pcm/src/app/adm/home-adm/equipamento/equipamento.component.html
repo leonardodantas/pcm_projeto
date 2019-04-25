@@ -4,7 +4,7 @@
         <label >Novo Equipamento</label>
         <input class="form-control" autofocus formControlName="equipamento">
       </div>
-      <button type="submit" [disabled]="!formEquipamento.valid" class="btn btn-primary">Inserir</button>
+      <button type="submit" [disabled]="!formEquipamento.valid" class="btn btn-primary" (click)=" inserirEquipamento()">Inserir</button>
   </form>
   <form [formGroup]="formEquipEditar" class="mb-3" *ngIf="editarEquip === true">
       <div class="form-group">
@@ -14,18 +14,15 @@
       <button type="submit" [disabled]="!formEquipEditar.valid" class="btn btn-primary">Editar</button>
   </form>
   <div>
-    <button class="btn btn-info" (click)="validInserir()">Inserir</button>
+    <button class="btn btn-info" (click)="validInserir()">Novo</button>
   </div>
   <div class="alert alert-success mt-2" role="alert" *ngIf="insertSuccess === true">
-    Função inserida com sucesso
-  </div>
-  <div class="alert alert-success mt-2" role="alert" *ngIf="deleteSuccess === true">
-      Função deletada com sucesso
+    Equipamento inserido com sucesso
   </div>
   <div class="alert alert-success mt-2" role="alert" *ngIf="updateSuccess === true">
-    Função editada com sucesso
+    Equipamento editado com sucesso
   </div>
-  <table class="table table-bordered bg-info">
+  <table class="table table-bordered bg-info text-white">
       <thead>
         <tr>
           <th scope="col">Equipamento</th>
@@ -33,11 +30,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let funcao of funcoes">
-          <td> {{ equipamento.equipamento }} </td>
+        <tr *ngFor="let equipamentos of equipamentos">
+          <td> {{ equipamentos.nome }} </td>
           <td> <div class="text-center">
             <button class="btn btn-primary mr-1" (click)="editar(equipamento)">Editar</button>
-            <button class="btn btn-danger ml-1" (click)="deletar(equipamento.id)">Deletar</button>
           </div>
           </td>
         </tr>

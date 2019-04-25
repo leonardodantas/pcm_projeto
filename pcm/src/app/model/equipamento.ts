@@ -2,6 +2,6 @@ export class Equipamento{
 
   constructor(
     public id: number,
-    public equipamento: string
+    public nome: string
   ){}
 }

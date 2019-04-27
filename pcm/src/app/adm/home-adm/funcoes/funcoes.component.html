@@ -14,7 +14,7 @@
         <button type="submit" [disabled]="!formFuncaoEditar.valid" (click)="editarFuncao()" class="btn btn-primary">Editar</button>
     </form>
     <div>
-      <button class="btn btn-info" (click)="validInserir()">Inserir</button>
+      <button class="btn btn-info" (click)="validInserir()">Novo</button>
     </div>
     <div class="alert alert-success mt-2" role="alert" *ngIf="insertSuccess === true">
       Função inserida com sucesso
@@ -25,7 +25,7 @@
     <div class="alert alert-success mt-2" role="alert" *ngIf="updateSuccess === true">
       Função editada com sucesso
     </div>
-    <table class="table table-bordered bg-info">
+    <table class="table table-bordered bg-info text-white">
         <thead>
           <tr>
             <th scope="col">Função</th>

@@ -57,6 +57,17 @@ export class Autenticacao{
 
   }
 
+  public autenticarManutencao(): boolean{
+    if(this.tokenId === undefined && localStorage.getItem('idUsuario') != null && localStorage.getItem('idCargo') === '2'){
+      this.tokenId = localStorage.getItem('idUsuario')
+    }
+    if(this.tokenId === undefined){
+      this.route.navigate(['/'])
+    }
+
+    return localStorage.getItem('idUsuario') !== null
+  }
+
 }
 
 

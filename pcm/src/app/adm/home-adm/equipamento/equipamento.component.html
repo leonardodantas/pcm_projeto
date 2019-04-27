@@ -11,7 +11,7 @@
         <label >Editar Função</label>
         <input class="form-control" autofocus formControlName="equipamento">
       </div>
-      <button type="submit" [disabled]="!formEquipEditar.valid" class="btn btn-primary">Editar</button>
+      <button type="submit" [disabled]="!formEquipEditar.valid" class="btn btn-primary" (click)="updateEquip()">Editar</button>
   </form>
   <div>
     <button class="btn btn-info" (click)="validInserir()">Novo</button>
@@ -33,7 +33,7 @@
         <tr *ngFor="let equipamentos of equipamentos">
           <td> {{ equipamentos.nome }} </td>
           <td> <div class="text-center">
-            <button class="btn btn-primary mr-1" (click)="editar(equipamento)">Editar</button>
+            <button class="btn btn-primary mr-1" (click)="editar(equipamentos)">Editar</button>
           </div>
           </td>
         </tr>

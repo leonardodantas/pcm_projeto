@@ -25,6 +25,10 @@ import { UsuariosComponent } from './adm/home-adm/usuarios/usuarios.component';
 import { FooterComponent } from './footer/footer.component';
 import { FuncoesComponent } from './adm/home-adm/funcoes/funcoes.component';
 import { EquipamentoComponent } from './adm/home-adm/equipamento/equipamento.component';
+import { ManutencaoComponent } from './manutencao/manutencao.component';
+import { AutenticacaoGuardServiceManutencao } from './services/autenticacao-guard-manu.service';
+import { MenuManutencaoComponent } from './manutencao/menu-manutencao/menu-manutencao.component';
+import { HomeManutencaoComponent } from './manutencao/home-manutencao/home-manutencao.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,10 @@ import { EquipamentoComponent } from './adm/home-adm/equipamento/equipamento.com
     UsuariosComponent,
     FooterComponent,
     FuncoesComponent,
-    EquipamentoComponent
+    EquipamentoComponent,
+    ManutencaoComponent,
+    MenuManutencaoComponent,
+    HomeManutencaoComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,7 @@ import { EquipamentoComponent } from './adm/home-adm/equipamento/equipamento.com
     HttpModule,
 
   ],
-  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao],
+  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao, AutenticacaoGuardServiceManutencao],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  public id: number
   public logar: boolean = true
   public erroLogar: boolean
   public cadastroBd: boolean
@@ -49,6 +50,8 @@ export class HomeComponent implements OnInit {
       this.formulario_cadastro.value.senha
     )
 
+    usuario.nome = usuario.nome.toUpperCase()
+
     this.autenticacaoService.inserirUsuario(usuario).subscribe(
       (usuario: Usuario)=>{
         this.cadastroBd = true
@@ -85,21 +88,25 @@ export class HomeComponent implements OnInit {
       (usuario: Usuario)=>{
         localStorage.setItem("idUsuario", usuario[0].id)
         localStorage.setItem("idCargo", usuario[0].fk_cargo_usuario)
-        this.router.navigate(['/adm'])
+        this.id = usuario[0].fk_cargo_usuario
       },
       (err: any)=>{
         this.erroLogar = true
         this.formulario_logar.controls.senha.reset()
       },
       ()=>{
-        this.verificarAreaAcesso(usuario.id)
+        this.verificarAreaAcesso(this.id)
       }
     )
   }
 
-  public verificarAreaAcesso(id): void{
+  public verificarAreaAcesso(id: number): void{
+
     if(id === 4){
       this.router.navigate(['/adm'])
+    }
+    if(id === 2){
+      this.router.navigate(['/manutencao'])
     }
   }
 

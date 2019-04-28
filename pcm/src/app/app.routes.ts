@@ -10,6 +10,7 @@ import { EquipamentoComponent } from "./adm/home-adm/equipamento/equipamento.com
 import { ManutencaoComponent } from "./manutencao/manutencao.component";
 import { AutenticacaoGuardServiceManutencao } from "./services/autenticacao-guard-manu.service";
 import { HomeManutencaoComponent } from "./manutencao/home-manutencao/home-manutencao.component";
+import { ManutecaoAdmComponent } from "./adm/home-adm/manutecao-adm/manutecao-adm.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -18,7 +19,8 @@ export const ROUTES: Routes = [
     {path: 'novosUsuarios', component: NovosUsuariosComponent},
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'funcoes', component: FuncoesComponent},
-    {path: 'equipamento', component: EquipamentoComponent}
+    {path: 'equipamento', component: EquipamentoComponent},
+    {path: 'manu-adm', component: ManutecaoAdmComponent}
  ] },
   {path: 'manutencao', component: ManutencaoComponent, canActivate: [AutenticacaoGuardServiceManutencao], children:[
     {path: '', component: HomeManutencaoComponent}

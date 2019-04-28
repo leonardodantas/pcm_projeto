@@ -29,6 +29,7 @@ import { ManutencaoComponent } from './manutencao/manutencao.component';
 import { AutenticacaoGuardServiceManutencao } from './services/autenticacao-guard-manu.service';
 import { MenuManutencaoComponent } from './manutencao/menu-manutencao/menu-manutencao.component';
 import { HomeManutencaoComponent } from './manutencao/home-manutencao/home-manutencao.component';
+import { ManutecaoAdmComponent } from './adm/home-adm/manutecao-adm/manutecao-adm.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HomeManutencaoComponent } from './manutencao/home-manutencao/home-manut
     EquipamentoComponent,
     ManutencaoComponent,
     MenuManutencaoComponent,
-    HomeManutencaoComponent
+    HomeManutencaoComponent,
+    ManutecaoAdmComponent
   ],
   imports: [
     BrowserModule,

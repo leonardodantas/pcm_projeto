@@ -34,8 +34,10 @@ export class EquipamentoService{
     })))
   }
 
+
+
   public updateEquipamento(equipamento: Equipamento): Observable<Response>{
-    console.log(JSON.stringify(equipamento))
+
     let headers =  new Headers()
     headers.append('Content-type', 'application/json')
     return this.http.put('http://localhost:3000/equipamento',
@@ -47,4 +49,19 @@ export class EquipamentoService{
       return err
     })))
   }
+
+  public updateEquipamentoStatus(equipamento: Equipamento): Observable<Response>{
+
+    let headers =  new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/equipamento_atualizar',
+    JSON.stringify(equipamento),
+    new RequestOptions({ headers : headers })
+    ).pipe(map((response: Response)=>{
+      return response
+    }, catchError((err: any)=>{
+      return err
+    })))
+  }
 }
+

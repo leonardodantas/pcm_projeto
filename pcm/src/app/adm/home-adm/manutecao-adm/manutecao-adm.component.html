@@ -1,7 +1,22 @@
 <div class="container">
-  <table class="table table-dark">
+
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-info btn-lg btn-block" [disabled]="!visualizarTabela" >Em Andamento</button>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-info btn-lg btn-block" >Finalizadas</button>
+    </div>
+  </div>
+
+  <table [ngClass]="{'table bg-info text-white' : true,
+                    'mt-3': true,
+                    'd-none': visualizarTabela}">
     <thead>
       <tr>
+        <th scope="col">Abrir</th>
         <th scope="col">ID</th>
         <th scope="col">Equipamento</th>
         <th scope="col">Data Envio</th>
@@ -9,11 +24,45 @@
     </thead>
     <tbody>
       <tr *ngFor="let manutencao of manutecao_equip">
-        <td>{{ manutencao.id }}</td>
-        <th scope="row"> {{ manutencao.nome }} </th>
+        <td> <button class="btn btn-primary" (click)="visualizarManu(manutencao)"> <i class="far fa-eye"></i> </button> </td>
+        <td> <strong> {{ manutencao.id }} </strong> </td>
+        <th> {{ manutencao.nome }} </th>
         <td> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
       </tr>
-
     </tbody>
-  </table>
+</table>
+
+<div [ngClass]="{'d-none': !visualizarTabela}">
+  <div class="bg-light mt-1 p-4 border border-dark">
+      <button type="button" class="close" aria-label="Close" (click)="fechar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    <form [formGroup]="formManutencao">
+
+        <div class="form-row mt-4">
+          <div class="form-group col-md-2">
+            <label>ID</label>
+            <input type="text" class="form-control" formControlName="id" readonly>
+          </div>
+          <div class="form-group col-md-4">
+              <label>DATA ENVIO</label>
+              <input type="text" class="form-control" formControlName="data_envio" readonly>
+            </div>
+          <div class="form-group col-md-6">
+            <label >EQUIPAMENTO</label>
+            <input type="text" class="form-control"  formControlName="equipamento" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">DESCRIÇÃO DE ENVIO</label>
+          <textarea class="form-control" rows="3" formControlName="descricao_envio" readonly></textarea >
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">DESCRIÇÃO ATUAL</label>
+            <textarea class="form-control" rows="3" formControlName="descricao_atual" readonly></textarea>
+        </div>
+      </form>
+    </div>
+</div>
+
 </div>

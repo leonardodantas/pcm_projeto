@@ -1,0 +1,19 @@
+<div class="container">
+  <h3 class="text-center">Novas</h3>
+  <table class="table table-danger">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">EQUIPAMENTO</th>
+        <th scope="col">DATA ENVIO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let manu_equip of manu_equip">
+        <td> {{manu_equip.id}} </td>
+        <td> {{manu_equip.nome}} </td>
+        <td> {{manu_equip.data_envio | date: 'd/M/yyyy' }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,3 +1,73 @@
-<p>
-  home-manutencao works!
-</p>
+<div class="container">
+  <div>
+  <h3 class="text-center">Ultimos Envios</h3>
+  <div class="alert alert-success" role="alert" *ngIf="manuStatus === false; else listarUltimos">
+    Nenhum Arquivo em Aberto Enviado por Ultimo
+  </div>
+  <ng-template #listarUltimos>
+    <table class="table table-danger">
+
+      <thead>
+        <tr>
+          <th scope="col">COD</th>
+          <th scope="col">EQUIPAMENTO</th>
+          <th scope="col">DATA ENVIO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ultimos of manu_equip">
+          <td> {{ ultimos.id }} </td>
+          <td>{{ ultimos.nome }} </td>
+          <td> {{ ultimos.data_envio | date: 'd/M/yyyy' }} </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  </div>
+  <h3 class="text-center">Aguardando Avaliação</h3>
+  <div class="alert alert-success" role="alert" *ngIf="avaliStatus === false; else listarAvaliacao">
+    Nenhuma Manutenção Aguardando Avaliação
+  </div>
+  <ng-template #listarAvaliacao>
+    <table class="table table-danger">
+
+      <thead>
+        <tr>
+          <th scope="col">COD</th>
+          <th scope="col">EQUIPAMENTO</th>
+          <th scope="col">DATA ENVIO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avali of avaliacao">
+          <td> {{ avali.id }} </td>
+          <td> {{ avali.nome }} </td>
+          <td> {{ avali.data_envio | date: 'd/M/yyyy' }} </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <h3 class="text-center">Aguardando Liberação</h3>
+  <div class="alert alert-success" role="alert" *ngIf="abertoStatus === false; else listarLiberado">
+    Nenhuma Manutenção Aguardando Liberação
+  </div>
+  <ng-template #listarLiberado>
+  <table class="table table-danger">
+
+    <thead>
+      <tr>
+        <th scope="col">COD</th>
+        <th scope="col">EQUIPAMENTO</th>
+        <th scope="col">DATA ENVIO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aberto of aberto">
+        <td> {{ aberto.id }} </td>
+        <td> {{ aberto.nome }} </td>
+        <td> {{ aberto.data_envio | date: 'd/M/yyyy' }} </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+</div>

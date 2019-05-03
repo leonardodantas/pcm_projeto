@@ -2,15 +2,19 @@
 
   <div class="row">
     <div class="col-md-12">
-      <button type="button" class="btn btn-info btn-lg btn-block" [disabled]="!visualizarTabela" >Em Andamento</button>
+      <button type="button" class="btn btn-info btn-lg btn-block" [disabled]="!exibirTabelaAndamento" (click)="andamento()" >Em Andamento</button>
     </div>
   </div>
   <div class="row mt-1">
     <div class="col-md-12">
-      <button type="button" class="btn btn-info btn-lg btn-block" >Finalizadas</button>
+      <button type="button" class="btn btn-info btn-lg btn-block"  [disabled]="!exibirTabelaFinalizada" (click)="finalizadas()">Finalizadas</button>
     </div>
   </div>
-
+  <div *ngIf="qtdManutencaoAndamento === true">
+    <div class="alert alert-info mt-3" role="alert" *ngIf="visualizarTabela === false && qtdManutencaoAndamento === false">
+      Nenhuma Manutenção em Andamento
+    </div>
+  </div>
   <table [ngClass]="{'table bg-info text-white' : true,
                     'mt-3': true,
                     'd-none': visualizarTabela}">
@@ -32,8 +36,8 @@
     </tbody>
 </table>
 
-<div [ngClass]="{'d-none': !visualizarTabela}">
-  <div class="bg-light mt-1 p-4 border border-dark">
+<div [ngClass]="{'d-none': !visualizarFormAndamento}">
+  <div class="bg-light mt-1 p-4 border border-dark mb-2">
       <button type="button" class="close" aria-label="Close" (click)="fechar()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -64,5 +68,29 @@
       </form>
     </div>
 </div>
+
+<div class="alert alert-info mt-2" role="alert" *ngIf="visualizarTabelaFinally === false && qtdFinalizada  === false">
+  Nenhuma Manutenção Finalizada
+</div>
+<table [ngClass]="{'table bg-info text-white' : true,
+                    'mt-3': true,
+                    'd-none': visualizarTabelaFinally}">
+    <thead>
+      <tr>
+        <th scope="col">Abrir</th>
+        <th scope="col">ID</th>
+        <th scope="col">Equipamento</th>
+        <th scope="col">Data Envio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let manutencao of finally_manutencao">
+        <td> <button class="btn btn-primary" (click)="visualizarManu(manutencao)"> <i class="far fa-eye"></i> </button> </td>
+        <td> <strong> {{ manutencao.id }} </strong> </td>
+        <th> {{ manutencao.nome }} </th>
+        <td> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
+      </tr>
+    </tbody>
+</table>
 
 </div>

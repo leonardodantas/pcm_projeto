@@ -34,4 +34,22 @@ export class ManutencaoEquipService{
       return err
     })))
   }
+
+  public finally(): Observable<ManutencaoEquipamento[]>{
+
+    return this.http.get('http://localhost:3000/MANU_EQUIP/finally')
+    .pipe(map((manuEquip: Response)=>{
+      return manuEquip.json()
+    }, catchError((err: any)=> err )))
+  }
+
+  public started(): Observable<ManutencaoEquipamento[]>{
+
+    return this.http.get('http://localhost:3000/MANU_EQUIP/started')
+    .pipe(map((manuEquip: Response)=>{
+      return manuEquip.json()
+    }, catchError((err: any)=>{
+      return err
+    })))
+  }
 }

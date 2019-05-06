@@ -34,8 +34,6 @@ class RealTime{
 
       this.manutencaoAndamento = andamento
     }
-
-
   }
 
   public getManuNovas(): number{
@@ -44,6 +42,18 @@ class RealTime{
 
   public getManuAndamento(): number{
     return this.manutencaoAndamento
+  }
+
+  public aumentarManuAndamento(): void{
+    this.manutencaoAndamento += 1;
+  }
+
+  public diminuirNovas(): void{
+    this.manutencaoNovas = this.manutencaoNovas - 1
+  }
+
+  public diminuirAndamento(): void{
+    this.manutencaoAndamento = this.manutencaoAndamento - 1
   }
 }
 

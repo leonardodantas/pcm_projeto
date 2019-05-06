@@ -5,17 +5,17 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" >
+      <li class="nav-item" *ngIf="novas === true">
         <a class="nav-link text-white" href="#" routerLink="novas" >Novas <span class="badge badge-light"> {{ this.realTime.getManuNovas() }} </span></a>
       </li>
-      <li class="nav-item" >
-        <a class="nav-link text-white" href="#" >Em Andamento <span class="badge badge-light"> {{ this.realTime.getManuAndamento() }} </span></a>
+      <li class="nav-item" *ngIf="andamento === true">
+        <a class="nav-link text-white" href="#" routerLink="andamento"  >Em Andamento <span class="badge badge-light"> {{ this.realTime.getManuAndamento() }} </span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Finalizadas</a>
+        <a class="nav-link text-white" href="#" routerLink="finalizadas">Finalizadas</a>
       </li>
       <li class="nav-item" >
-        <a class="nav-link text-white" href="#" >Todas <span class="badge badge-light"></span></a>
+        <a class="nav-link text-white" href="#" routerLink="todas" >Todas <span class="badge badge-light"></span></a>
       </li>
     </ul>
     <div class="form-inline text-white">

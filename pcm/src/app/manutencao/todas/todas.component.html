@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">TODAS MANUTENÇÕES</h3>
+    <table class="table table-bordered table-sm bg-light" >
+      <thead >
+        <th>ID</th>
+        <th>EQUIPAMENTO</th>
+        <th>DATA ENVIO</th>
+        <th>STATUS</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todas of manu_equip">
+          <td> <a  class="text-decoration-none text-dark"> {{ todas.id }} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ todas.nome }} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ todas.data_envio | date: 'dd/MM/yyyy' }} </a> </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ todas.status }} </a> </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+</div>

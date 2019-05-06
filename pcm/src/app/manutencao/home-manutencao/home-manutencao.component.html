@@ -1,11 +1,12 @@
-<div class="container">
-  <div>
-  <h3 class="text-center">Ultimos Envios</h3>
-  <div class="alert alert-success" role="alert" *ngIf="manuStatus === false; else listarUltimos">
+<div class="container-fluid mb-4">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4">
+  <h3 class="text-center font-weight-bold text-uppercase text-white">Ultimos Envios</h3>
+  <div class="alert alert-secondary text-center" role="alert" *ngIf="manuStatus === false; else listarUltimos">
     Nenhum Arquivo em Aberto Enviado por Ultimo
   </div>
   <ng-template #listarUltimos>
-    <table class="table table-danger">
+    <div class=" ">
+    <table class="table table-bordered table-sm bg-light ">
 
       <thead>
         <tr>
@@ -16,20 +17,22 @@
       </thead>
       <tbody>
         <tr *ngFor="let ultimos of manu_equip">
-          <td> {{ ultimos.id }} </td>
-          <td>{{ ultimos.nome }} </td>
-          <td> {{ ultimos.data_envio | date: 'd/M/yyyy' }} </td>
+          <td class="font-weight-normal"> {{ ultimos.id }} </td>
+          <td class="font-weight-normal">{{ ultimos.nome }} </td>
+          <td class="font-weight-normal"> {{ ultimos.data_envio | date: 'd/M/yyyy' }} </td>
         </tr>
       </tbody>
     </table>
-  </ng-template>
   </div>
-  <h3 class="text-center">Aguardando Avaliação</h3>
-  <div class="alert alert-success" role="alert" *ngIf="avaliStatus === false; else listarAvaliacao">
+  </ng-template>
+</div>
+<div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-4 ">
+  <h3 class="text-center font-weight-bold text-uppercase text-white">Aguardando Avaliação</h3>
+  <div class="alert alert-secondary text-center" role="alert" *ngIf="avaliStatus === false; else listarAvaliacao">
     Nenhuma Manutenção Aguardando Avaliação
   </div>
   <ng-template #listarAvaliacao>
-    <table class="table table-danger">
+    <table class="table table-bordered table-sm bg-light">
 
       <thead>
         <tr>
@@ -47,12 +50,14 @@
       </tbody>
     </table>
   </ng-template>
-  <h3 class="text-center">Aguardando Liberação</h3>
-  <div class="alert alert-success" role="alert" *ngIf="abertoStatus === false; else listarLiberado">
+</div>
+<div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-4">
+  <h3 class="text-center font-weight-bold text-uppercase text-white">Aguardando Liberação</h3>
+  <div class="alert alert-secondary text-center" role="alert" *ngIf="abertoStatus === false; else listarLiberado">
     Nenhuma Manutenção Aguardando Liberação
   </div>
   <ng-template #listarLiberado>
-  <table class="table table-danger">
+  <table class="table table-bordered table-sm bg-light">
 
     <thead>
       <tr>
@@ -70,4 +75,5 @@
     </tbody>
   </table>
 </ng-template>
+</div>
 </div>

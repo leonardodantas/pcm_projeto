@@ -27,7 +27,8 @@ export class ManutecaoAdmComponent implements OnInit {
     'equipamento': new FormControl(null),
     'descricao_envio': new FormControl(null),
     'descricao_atual': new FormControl(null),
-    'data_envio': new FormControl(null)
+    'data_envio': new FormControl(null),
+    'descricao_final': new FormControl(null)
   })
 
   constructor(
@@ -35,10 +36,11 @@ export class ManutecaoAdmComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.manuntecaoEquipService.get().subscribe(
+    this.manuntecaoEquipService.started().subscribe(
       (manutencao_equip:ManutencaoEquipamento[])=>{
         this.manutecao_equip = manutencao_equip
         this.qtdManutencaoAndamento = manutencao_equip.length > 0 ? true : false
+
 
       }
     )
@@ -46,6 +48,7 @@ export class ManutecaoAdmComponent implements OnInit {
       (manutencao_equip: ManutencaoEquipamento[])=>{
         this.finally_manutencao = manutencao_equip
         this.qtdFinalizada = manutencao_equip.length > 0 ? true : false
+
 
       }
     )
@@ -58,12 +61,15 @@ export class ManutecaoAdmComponent implements OnInit {
     this.formManutencao.controls.equipamento.setValue(manutencao.nome)
 
     const datePipe =  new DatePipe('en-US')
-    let data_envio = datePipe.transform(manutencao.data_envio, 'd/M/yyyy')
+    let data_envio = datePipe.transform(manutencao.data_envio, 'dd/M/yyyy')
     this.formManutencao.controls.data_envio.setValue(data_envio)
     if(manutencao.descricao_atual_manu !== null)
       this.formManutencao.controls.descricao_atual.setValue(manutencao.descricao_atual_manu)
     else this.formManutencao.controls.descricao_atual.setValue("NENHUMA ATUALIZAÇÃO LANÇADA AINDA")
     this.formManutencao.controls.descricao_envio.setValue(manutencao.descricao_envio_user)
+    if(manutencao.descricao_final_manu !== null)
+      this.formManutencao.controls.descricao_final.setValue(manutencao.descricao_final_manu)
+    else this.formManutencao.controls.descricao_final.setValue("A MANUTENÇÃO AINDA NÃO FOI FINALIZADA")
 
   }
 

@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">FINALIZADAS</h3>
+    <div class="alert alert-secondary text-center" role="alert" *ngIf="finalizado === false; else listaFinalizados">
+      Nenhuma Manuteção Finalizada
+    </div>
+    <ng-template #listaFinalizados>
+    <table class="table table-bordered table-sm bg-light" >
+      <thead >
+        <th>ID</th>
+        <th>EQUIPAMENTO</th>
+        <th>DATA ENVIO</th>
+        <th>DATA REALIZADO</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let finalizado of equipamento_finally">
+          <td (dblclick)="abrirManutencao(finalizado)"> <a  class="text-decoration-none text-dark"> {{ finalizado.id }} </a>  </td>
+          <td (dblclick)="abrirManutencao(finalizado)"> <a  class="text-decoration-none text-dark"> {{ finalizado.nome }} </a>  </td>
+          <td (dblclick)="abrirManutencao(finalizado)"> <a  class="text-decoration-none text-dark"> {{ finalizado.data_envio | date: 'dd/MM/yyyy' }} </a> </td>
+          <td (dblclick)="abrirManutencao(finalizado)"> <a  class="text-decoration-none text-dark"> {{ finalizado.data_realizado | date: 'dd/MM/yyyy' }} </a> </td>
+        </tr>
+      </tbody>
+    </table>
+</ng-template>
+</div>
+
+<div class="mt-4 border border-dark rounded mb-3" *ngIf="visualizar === true">
+  <div class="bg-secondary p-2">
+    <button type="button" class="close text-white" aria-label="Close" (click)="fechar()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  <h3 class="text-center font-weight-bold text-uppercase text-white">FINALIZADAS</h3>
+  </div>
+  <div class="bg-light p-3 pr-4 pl-4">
+  <form [formGroup]="form_final">
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label >ID</label>
+          <input type="text" class="form-control" readonly formControlName="id">
+        </div>
+        <div class="form-group col-md-2">
+            <label >DATA ENVIO</label>
+            <input type="text" class="form-control"  readonly formControlName="data_envio">
+        </div>
+        <div class="form-group col-md-2">
+          <label >DATA REALIZADO</label>
+          <input type="text" class="form-control"  readonly formControlName="data_realizado">
+        </div>
+        <div class="form-group col-md-6">
+          <label >EQUIPAMENTO</label>
+          <input type="text" class="form-control"  readonly formControlName="equipamento">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>DESCRIÇÃO ENVIO</label>
+        <textarea class="form-control" rows="3"  readonly formControlName="descricao_envio"></textarea>
+      </div>
+      <div class="form-group">
+          <label>ULTIMA ATUALIZAÇÃO</label>
+          <textarea class="form-control" rows="3"  readonly formControlName="ultima_atualizacao"></textarea>
+      </div>
+      <div class="form-group">
+          <label>DESCRIÇÃO FINAL</label>
+          <textarea class="form-control" autofocus rows="3" readonly formControlName="finalizacao"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="p-4 bg-secondary"></div>
+  </div>
+</div>

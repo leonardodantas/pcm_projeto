@@ -108,6 +108,9 @@ export class HomeComponent implements OnInit {
     if(id === 2){
       this.router.navigate(['/manutencao'])
     }
+    if(id === 3){
+      this.router.navigate(['/usuario'])
+    }
   }
 
   public confirmPassword(): boolean{

@@ -68,6 +68,17 @@ export class Autenticacao{
     return localStorage.getItem('idUsuario') !== null
   }
 
+  public autenticarUsuario(): boolean{
+    if(this.tokenId === undefined && localStorage.getItem('idUsuario') != null && localStorage.getItem('idCargo') === '3'){
+      this.tokenId = localStorage.getItem('idUsuario')
+    }
+    if(this.tokenId === undefined){
+      this.route.navigate(['/'])
+    }
+
+    return localStorage.getItem('idUsuario') !== null
+  }
+
 }
 
 

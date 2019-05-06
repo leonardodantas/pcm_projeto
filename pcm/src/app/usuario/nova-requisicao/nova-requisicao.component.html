@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-6 mb-2">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">EQUIPAMENTOS LIVRES</h3>
+    <table class="table table-bordered table-sm bg-light" >
+        <thead >
+          <th>ID</th>
+          <th>EQUIPAMENTO</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td> <a  class="text-decoration-none text-dark"> 1 </a>  </td>
+            <td> <a  class="text-decoration-none text-dark"> TRATOR </a>  </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  </div>
+  <div class="col-md-6">
+      <div class=" border border-dark rounded">
+          <div class="bg-secondary p-2">
+          <h3 class="text-center font-weight-bold text-uppercase text-white">REQUISITAR</h3>
+          </div>
+          <div class="bg-light p-3 pr-4 pl-4">
+        <!-- <form [formGroup]="form_novas">-->
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label >ID</label>
+                  <input type="text" class="form-control" readonly formControlName="id">
+                </div>
+                <div class="form-group col-md-8">
+                  <label >EQUIPAMENTO</label>
+                  <input type="text" class="form-control"  readonly formControlName="equipamento">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>MOTIVOS REQUISIÇÃO</label>
+                <textarea class="form-control" rows="5"  readonly formControlName="descricao_envio"></textarea>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <button type="button" [disabled]="!form_novas.valid" class="btn btn-danger btn-lg btn-block" (click)="atualizar()">REQUISITAR</button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-info btn-lg btn-block" (click)="cancelar()">CANCELAR</button>
+                </div>
+              </div>
+       <!--  </form>-->
+          </div>
+          <div class="p-4 bg-secondary"></div>
+          </div>
+  </div>
+  </div>
+</div>

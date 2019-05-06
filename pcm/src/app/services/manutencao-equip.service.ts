@@ -35,6 +35,16 @@ export class ManutencaoEquipService{
     })))
   }
 
+  public getAll(): Observable<ManutencaoEquipamento[]>{
+
+    return this.http.get('http://localhost:3000/MANU_EQUIP/all')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
   public finally(): Observable<ManutencaoEquipamento[]>{
 
     return this.http.get('http://localhost:3000/MANU_EQUIP/finally')
@@ -51,5 +61,36 @@ export class ManutencaoEquipService{
     }, catchError((err: any)=>{
       return err
     })))
+  }
+
+  public atualizar(manu_equip: ManutencaoEquipamento): Observable<Response>{
+
+    let headers =  new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/MANU_EQUIP/',
+    JSON.stringify(manu_equip),
+    new RequestOptions({ headers : headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err : any)=>{
+      return err
+    })))
+
+  }
+
+  public finalizar(manu_equip: ManutencaoEquipamento): Observable<Response>{
+    console.log(JSON.stringify(manu_equip))
+    let headers =  new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/manu_equip/finally',
+    JSON.stringify(manu_equip),
+    new RequestOptions({ headers : headers})
+    )
+    .pipe(map((response: Response)=>{
+      return response
+    },catchError((err:any)=>{
+      return err
+    })))
+
   }
 }

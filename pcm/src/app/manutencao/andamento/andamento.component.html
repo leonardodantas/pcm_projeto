@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="alert alert-primary text-center" role="alert" *ngIf="finalizada === true">
+    Manutenção Finalizada com sucesso
+  </div>
+  <div class="alert alert-success text-center" role="alert" *ngIf="andamento === true">
+    Manutenção Atualizada com sucesso
+  </div>
+  <div class="alert alert-danger text-center" role="alert" *ngIf="erro=== true">
+    Erro ao Atualizar Manutenção
+  </div>
+
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+  <h3 class="text-center font-weight-bold text-uppercase text-white">ANDAMENTO</h3>
+  <div class="alert alert-secondary text-center mt-3" role="alert" *ngIf="manuEquiStatus === true; else listarAndamento">
+      Nenhuma Manutenção em Andamento
+  </div>
+  <ng-template #listarAndamento>
+  <table class="table table-bordered table-sm bg-light">
+    <thead >
+      <th>ID</th>
+      <th>EQUIPAMENTO</th>
+      <th>DATA ENVIO</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let andamento of manu_equip">
+        <td (dblclick)="abrirAndamento(andamento)"> <a  class="text-decoration-none text-dark">{{andamento.id}}</a>  </td>
+        <td (dblclick)="abrirAndamento(andamento)"> <a  class="text-decoration-none text-dark">{{andamento.nome}}</a>  </td>
+        <td (dblclick)="abrirAndamento(andamento)"> <a  class="text-decoration-none text-dark">{{andamento.data_envio | date : 'dd/MM/yyyy'}}</a> </td>
+      </tr>
+    </tbody>
+  </table>
+  </ng-template>
+</div>
+
+<div class="mt-4 border border-dark rounded" *ngIf="editAndamento === true">
+    <div class="bg-secondary p-2">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">ATUALIZAÇÃO</h3>
+    </div>
+    <div class="bg-light p-3 pr-4 pl-4">
+    <form [formGroup]="form_andamento">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label >ID</label>
+            <input type="text" class="form-control" readonly formControlName="id">
+          </div>
+          <div class="form-group col-md-4">
+              <label >DATA ENVIO</label>
+              <input type="text" class="form-control"  readonly formControlName="data_envio">
+            </div>
+          <div class="form-group col-md-6">
+            <label >EQUIPAMENTO</label>
+            <input type="text" class="form-control"  readonly formControlName="equipamento">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>DESCRIÇÃO ENVIO</label>
+          <textarea class="form-control" rows="5"  readonly formControlName="descricao_envio"></textarea>
+        </div>
+        <div class="form-group">
+            <label>ULTIMA ATUALIZAÇÃO</label>
+            <textarea class="form-control" rows="5"  readonly formControlName="ultima_atualizacao"></textarea>
+        </div>
+        <div class="form-group">
+            <label>NOVA ATUALIZAÇÃO</label>
+            <textarea class="form-control" autofocus rows="5"  formControlName="nova_atualizacao"></textarea>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <button type="button" [disabled]="!form_andamento.valid" class="btn btn-success btn-lg btn-block" (click)="finalizar()">FINALIZAR</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" [disabled]="!form_andamento.valid" class="btn btn-danger btn-lg btn-block" (click)="atualizar()">ATUALIZAR</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-info btn-lg btn-block" (click)="cancelar()">CANCELAR</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="p-4 bg-secondary"></div>
+    </div>
+</div>

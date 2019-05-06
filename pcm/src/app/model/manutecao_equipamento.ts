@@ -11,6 +11,7 @@ export class ManutencaoEquipamento{
     public descricao_atual_manu: string,
     public descricao_final_manu: string,
     public data_envio: string,
-    public data_realizacao: string
+    public data_realizado: string,
+    public status: string
   ){}
 }

@@ -178,6 +178,7 @@ export class EquipamentoComponent implements OnInit {
       '',
       '',
       '',
+      '',
       ''
     )
 

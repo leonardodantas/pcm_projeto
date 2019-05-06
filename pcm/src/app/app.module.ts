@@ -32,6 +32,14 @@ import { HomeManutencaoComponent } from './manutencao/home-manutencao/home-manut
 import { ManutecaoAdmComponent } from './adm/home-adm/manutecao-adm/manutecao-adm.component';
 import { PendenciaComponent } from './adm/home-adm/pendencia/pendencia.component';
 import { NovasComponent } from './manutencao/novas/novas.component';
+import { AndamentoComponent } from './manutencao/andamento/andamento.component';
+import { FinalizadasComponent } from './manutencao/finalizadas/finalizadas.component';
+import { TodasComponent } from './manutencao/todas/todas.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AutenticacaoGuardServiceUsuario } from './services/autenticacao-guard-usuario.service';
+import { MenuUsuarioComponent } from './usuario/menu-usuario/menu-usuario.component';
+import { HomeUsuarioComponent } from './usuario/home-usuario/home-usuario.component';
+import { NovaRequisicaoComponent } from './usuario/nova-requisicao/nova-requisicao.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +58,14 @@ import { NovasComponent } from './manutencao/novas/novas.component';
     HomeManutencaoComponent,
     ManutecaoAdmComponent,
     PendenciaComponent,
-    NovasComponent
+    NovasComponent,
+    AndamentoComponent,
+    FinalizadasComponent,
+    TodasComponent,
+    UsuarioComponent,
+    MenuUsuarioComponent,
+    HomeUsuarioComponent,
+    NovaRequisicaoComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +74,7 @@ import { NovasComponent } from './manutencao/novas/novas.component';
     HttpModule,
 
   ],
-  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao, AutenticacaoGuardServiceManutencao],
+  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao, AutenticacaoGuardServiceManutencao, AutenticacaoGuardServiceUsuario],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

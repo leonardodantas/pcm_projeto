@@ -78,8 +78,8 @@ export class EquipamentoComponent implements OnInit {
       else{
         let condicao = new Condicao(
           false,
-          true,
-          false
+          false,
+          true
         )
         this.condicao.push(condicao)
       }

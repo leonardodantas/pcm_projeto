@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">EM ESPERA</h3>
+    <table class="table table-bordered table-sm bg-light">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">EQUIPAMENTO</th>
+          <th scope="col">DATA ENVIO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ficha of ficha_emprestimo">
+          <td (dblclick)="selecionarFicha(ficha)"> <a  class="text-decoration-none text-dark">{{ficha.id}}</a>  </td>
+          <td (dblclick)="selecionarFicha(ficha)"> <a   class="text-decoration-none text-dark">{{ficha.nome}} </a> </td>
+          <td (dblclick)="selecionarFicha(ficha)"> <a   class="text-decoration-none text-dark">  {{ficha.data_requisicao | date: 'dd/MM/yyyy' }}</a> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

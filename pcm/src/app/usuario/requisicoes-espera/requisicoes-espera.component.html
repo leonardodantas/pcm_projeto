@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">REQUISIÇÕES EM ESPERA</h3>
+    <div class="alert alert-secondary text-center" role="alert" *ngIf="fichaIsValid !== true; else listaRequisicao">
+      NENHUMA REQUISIÇÃO EM ESPERA
+    </div>
+    <ng-template #listaRequisicao>
+    <table class="table table-bordered table-sm bg-light" >
+        <thead >
+          <th>ID</th>
+          <th>EQUIPAMENTO</th>
+          <th>DATA REQUISIÇÃO</th>
+          <th>MOTIVO</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let equipamento of ficha_emprestimo">
+            <td> <a  class="text-decoration-none text-dark"> {{ equipamento.id }} </a>  </td>
+            <td> <a  class="text-decoration-none text-dark"> {{ equipamento.nome}} </a>  </td>
+            <td> <a  class="text-decoration-none text-dark"> {{ equipamento.data_requisicao | date: 'dd/MM/yyyy'}} </a>  </td>
+            <td> <a  class="text-decoration-none text-dark"> {{ equipamento.motivo_emprestimo}} </a>  </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
+</div>

@@ -5,6 +5,8 @@ class RealTime{
   public manutencaoAndamento: number
   public manutencaoNovas: number
 
+  public requisicaoEspera: number
+
   constructor(){}
 
   public getQtd(): number{
@@ -54,6 +56,14 @@ class RealTime{
 
   public diminuirAndamento(): void{
     this.manutencaoAndamento = this.manutencaoAndamento - 1
+  }
+
+  public adicionarRequisicaoNovas(requisicao: number): void{
+    this.requisicaoEspera = requisicao
+  }
+
+  public getRequisicaoNovas(): number{
+    return this.requisicaoEspera
   }
 }
 

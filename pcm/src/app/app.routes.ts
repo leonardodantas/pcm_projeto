@@ -19,6 +19,8 @@ import { AutenticacaoGuardServiceUsuario } from "./services/autenticacao-guard-u
 import { UsuarioComponent } from "./usuario/usuario.component";
 import { HomeUsuarioComponent } from "./usuario/home-usuario/home-usuario.component";
 import { NovaRequisicaoComponent } from "./usuario/nova-requisicao/nova-requisicao.component";
+import { RequisicoesEsperaComponent } from "./usuario/requisicoes-espera/requisicoes-espera.component";
+import { NovasRequisicoesComponent } from "./adm/novas-requisicoes/novas-requisicoes.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -28,7 +30,8 @@ export const ROUTES: Routes = [
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'funcoes', component: FuncoesComponent},
     {path: 'equipamento', component: EquipamentoComponent},
-    {path: 'manu-adm', component: ManutecaoAdmComponent}
+    {path: 'manu-adm', component: ManutecaoAdmComponent},
+    {path: 'requisicoes', component: NovasRequisicoesComponent}
  ] },
   {path: 'manutencao', component: ManutencaoComponent, canActivate: [AutenticacaoGuardServiceManutencao], children:[
     {path: '', component: HomeManutencaoComponent},
@@ -39,6 +42,7 @@ export const ROUTES: Routes = [
   ]},
   {path: 'usuario', component: UsuarioComponent, canActivate: [AutenticacaoGuardServiceUsuario], children:[
     {path: '', component: HomeUsuarioComponent},
-    {path: 'nova-requisicao', component: NovaRequisicaoComponent}
+    {path: 'nova-requisicao', component: NovaRequisicaoComponent},
+    {path: 'requsicao-espera', component: RequisicoesEsperaComponent}
   ]}
 ]

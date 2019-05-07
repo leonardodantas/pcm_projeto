@@ -40,6 +40,8 @@ import { AutenticacaoGuardServiceUsuario } from './services/autenticacao-guard-u
 import { MenuUsuarioComponent } from './usuario/menu-usuario/menu-usuario.component';
 import { HomeUsuarioComponent } from './usuario/home-usuario/home-usuario.component';
 import { NovaRequisicaoComponent } from './usuario/nova-requisicao/nova-requisicao.component';
+import { RequisicoesEsperaComponent } from './usuario/requisicoes-espera/requisicoes-espera.component';
+import { NovasRequisicoesComponent } from './adm/novas-requisicoes/novas-requisicoes.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { NovaRequisicaoComponent } from './usuario/nova-requisicao/nova-requisic
     UsuarioComponent,
     MenuUsuarioComponent,
     HomeUsuarioComponent,
-    NovaRequisicaoComponent
+    NovaRequisicaoComponent,
+    RequisicoesEsperaComponent,
+    NovasRequisicoesComponent
   ],
   imports: [
     BrowserModule,

@@ -9,21 +9,29 @@
           <th>EQUIPAMENTO</th>
         </thead>
         <tbody>
-          <tr>
-            <td> <a  class="text-decoration-none text-dark"> 1 </a>  </td>
-            <td> <a  class="text-decoration-none text-dark"> TRATOR </a>  </td>
+          <tr *ngFor="let equipamento of equipamentos">
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.id }} </a>  </td>
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.nome}} </a>  </td>
           </tr>
         </tbody>
       </table>
   </div>
   </div>
   <div class="col-md-6">
+    <div class="alert alert-info text-center" role="alert" *ngIf="equipamentoSelecionado !== true; else requisitar">
+      NENHUM EQUIPAMENTO SELECIONADO
+    </div>
+
+    <ng-template #requisitar>
       <div class=" border border-dark rounded">
           <div class="bg-secondary p-2">
           <h3 class="text-center font-weight-bold text-uppercase text-white">REQUISITAR</h3>
           </div>
+          <div class="alert alert-info text-center mt-3" role="alert" *ngIf="requisicaoEnviada === true">
+            EQUIPAMENTO ENVIADO PARA ANALISE
+          </div>
           <div class="bg-light p-3 pr-4 pl-4">
-        <!-- <form [formGroup]="form_novas">-->
+          <form [formGroup]="form_requisicao">
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label >ID</label>
@@ -35,21 +43,22 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>MOTIVOS REQUISIÇÃO</label>
-                <textarea class="form-control" rows="5"  readonly formControlName="descricao_envio"></textarea>
+                <label>DESCRICÃO REQUISIÇÃO</label>
+                <textarea class="form-control" rows="5"   formControlName="descricao_requisicao"></textarea>
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <button type="button" [disabled]="!form_novas.valid" class="btn btn-danger btn-lg btn-block" (click)="atualizar()">REQUISITAR</button>
+                  <button type="button" [disabled]="!form_requisicao.valid" class="btn btn-danger btn-lg btn-block" (click)="requisitarEquipamento()">REQUISITAR</button>
                 </div>
                 <div class="col-md-6">
                   <button type="button" class="btn btn-info btn-lg btn-block" (click)="cancelar()">CANCELAR</button>
                 </div>
               </div>
-       <!--  </form>-->
+        </form>
           </div>
           <div class="p-4 bg-secondary"></div>
           </div>
+        </ng-template>
   </div>
   </div>
 </div>

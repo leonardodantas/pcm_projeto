@@ -20,6 +20,16 @@ export class EquipamentoService{
     })))
   }
 
+  public getLivre(): Observable<Equipamento[]>{
+
+    return this.http.get('http://localhost:3000/equipamento/livre')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
   public inserirEquipamento(equipamento: Equipamento): Observable<Response>{
 
     let headers =  new Headers()

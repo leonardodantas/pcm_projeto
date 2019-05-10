@@ -30,13 +30,15 @@
   <div [ngClass]="{
     'd-none': !mostrarForm
   }">
+  <div class="alert alert-secondary text-center" role="alert" *ngIf="liberado === true">
+      EQUIPAMENTO DEVOLVIDO COM SUCESSO
+    </div>
     <div class="mt-4 border border-dark rounded">
         <div class="bg-secondary p-2">
           <button type="button" class="close text-white" aria-label="Close" (click)="cancelar()">
             <span aria-hidden="true">&times;</span>
           </button>
         <h3 class="text-center font-weight-bold text-uppercase text-white">DEVOLVER</h3>
-
         </div>
         <div class="bg-light p-3 pr-4 pl-4">
         <form [formGroup]="formulario">
@@ -60,7 +62,7 @@
             </div>
             <div class="row">
               <div class="col-md-6">
-                <button type="button"  class="btn btn-success btn-lg btn-block" (click)="aceitar()">LIBERAR</button>
+                <button type="button"  class="btn btn-success btn-lg btn-block" (click)="aceitar()">DEVOLVER</button>
               </div>
               <div class="col-md-6">
                 <button type="button" class="btn btn-danger btn-lg btn-block" (click)="cancelar()">CANCELAR</button>

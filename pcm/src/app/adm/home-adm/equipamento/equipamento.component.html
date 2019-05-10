@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <form [formGroup]="formEquipamento" class="mb-3" *ngIf="inserir === true">
       <button type="button" class="close" aria-label="Close" (click)="fecharForm()">
           <span aria-hidden="true">&times;</span>
@@ -35,8 +35,17 @@
 
 
   <div class="row mb-2">
-    <div class="col-md-12">
-        <button class="btn btn-info btn-lg btn-block" (click)="validInserir()">Novo</button>
+    <div class="col-md-3">
+        <button class="btn btn-info btn-lg btn-block" (click)="validInserir()">NOVO</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-info btn-lg btn-block" (click)="listarTodos()">LISTAR</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-info btn-lg btn-block" (click)="listarAlugados()">ALUGADOS</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-info btn-lg btn-block" (click)="listarTodos()">FINALIZADOS</button>
     </div>
   </div>
   <div class="alert alert-success mt-2" role="alert" *ngIf="insertSuccess === true">
@@ -48,7 +57,11 @@
   <div class="alert alert-success mt-2" role="alert" *ngIf="manuEquipSuccess === true">
       Equipamento enviado para manutenção
     </div>
-  <table class="table table-bordered bg-info text-white mt-3">
+  <div [ngClass]="{
+    'd-none': listar} ">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4  mb-4">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">EQUIPAMENTOS</h3>
+  <table class="table table-bordered table-sm bg-light">
       <thead>
         <tr>
           <th scope="col">Equipamento</th>
@@ -60,20 +73,56 @@
         <tr *ngFor="let equipamentos of equipamentos">
           <td> {{ equipamentos.nome }} </td>
           <td> <div class="text-center">
-            <button class="btn btn-primary m-1" (click)="editar(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Editar</button>
-            <button class="btn btn-danger m-1" (click)="enviarManutencao(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Manutenção</button>
+            <button class="btn btn-primary m-1 btn-sm" (click)="editar(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Editar</button>
+            <button class="btn btn-danger m-1 btn-sm" (click)="enviarManutencao(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Manutenção</button>
           </div>
           </td>
-          <td>
-            <div [ngClass]="{'text-center': true,
-                            'bg-success' : condicaoEquipamentoVal(equipamentos),
-                            'bg-danger': condicaoEquipamentoErr(equipamentos),
-                            'bg-warning': condicaoEquipamentoOcu(equipamentos)}">
+          <td [ngClass]="{'text-center': true,
+          'bg-success' : condicaoEquipamentoVal(equipamentos),
+          'bg-danger': condicaoEquipamentoErr(equipamentos),
+          'bg-warning': condicaoEquipamentoOcu(equipamentos)}">
+            <div class="text-center font-weight-bold text-uppercase text-white">
                 {{ equipamentos.status }}
             </div>
           </td>
         </tr>
       </tbody>
     </table>
+    </div>
+  </div>
+
+  <div [ngClass]="{
+    'd-none': alugado} ">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4  mb-4">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">EQUIPAMENTOS ALUGADOS</h3>
+  <table class="table table-bordered table-sm bg-light">
+      <thead>
+        <tr>
+          <th scope="col">Equipamento</th>
+          <th scope="col" class="text-center">Ações</th>
+          <th scope="col" class="text-center">Condição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipamentos of equipamentosAlugados">
+          <td> {{ equipamentos.nome }} </td>
+          <td> <div class="text-center">
+            <button class="btn btn-primary m-1 btn-sm" (click)="editar(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Editar</button>
+            <button class="btn btn-danger m-1 btn-sm" (click)="enviarManutencao(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Manutenção</button>
+          </div>
+          </td>
+          <td [ngClass]="{'text-center': true,
+          'bg-success' : condicaoEquipamentoVal(equipamentos),
+          'bg-danger': condicaoEquipamentoErr(equipamentos),
+          'bg-warning': condicaoEquipamentoOcu(equipamentos)}">
+            <div class="text-center font-weight-bold text-uppercase text-white">
+                {{ equipamentos.status }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 </div>
 

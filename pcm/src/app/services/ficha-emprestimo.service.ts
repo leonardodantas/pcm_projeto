@@ -98,4 +98,28 @@ export class FichaEmprestimoService{
       return response
     }, catchError((err:any)=> err)))
   }
+
+  public devolucao(ficha_emprestimo: FichaEmprestimo): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/ficha_emprestimo/devolver',
+    JSON.stringify(ficha_emprestimo),
+    new RequestOptions({ headers : headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err: any)=>{
+      return err
+    })))
+  }
+
+  public getAllAlugadas(): Observable<FichaEmprestimo[]>{
+
+    return this.http.get('http://localhost:3000/ficha_emprestimo/all/alugadas')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
 }

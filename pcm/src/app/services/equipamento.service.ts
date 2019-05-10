@@ -73,5 +73,6 @@ export class EquipamentoService{
       return err
     })))
   }
+
 }
 

@@ -6,12 +6,14 @@ import { ManutencaoEquipamento } from 'src/app/model/manutecao_equipamento';
 import { ManutencaoEquipService } from 'src/app/services/manutencao-equip.service';
 import { Response } from '@angular/http';
 import { Condicao } from './condicoes.model';
+import { FichaEmprestimoService } from 'src/app/services/ficha-emprestimo.service';
+import { FichaEmprestimo } from 'src/app/model/ficha_emprestimo';
 
 @Component({
   selector: 'app-equipamento',
   templateUrl: './equipamento.component.html',
   styleUrls: ['./equipamento.component.css'],
-  providers: [EquipamentoService, ManutencaoEquipService]
+  providers: [EquipamentoService, ManutencaoEquipService, FichaEmprestimoService]
 })
 export class EquipamentoComponent implements OnInit {
 
@@ -37,16 +39,31 @@ export class EquipamentoComponent implements OnInit {
   public manutencao: boolean
   public manuEquipSuccess: boolean
 
+  public listar: boolean = false
+
+  public equipamentosAlugados: Equipamento[]
+  public fichaEmprestimo: FichaEmprestimo[]
+  public alugado: boolean = true
+
   constructor(
     private equipamentoService: EquipamentoService,
-    private manuEquipService: ManutencaoEquipService
+    private manuEquipService: ManutencaoEquipService,
+    private fichaEmprestimoService: FichaEmprestimoService
   ) { }
 
   ngOnInit() {
     this.equipamentoService.get().subscribe(
       (equipamentos: Equipamento[])=>{
         this.equipamentos = equipamentos
+        this.equipamentosAlugados = equipamentos
         this.condicaoEquipamento()
+      }
+    )
+
+    this.fichaEmprestimoService.getAllAlugadas().subscribe(
+      (ficha_emprestimo: FichaEmprestimo[])=>{
+        this.fichaEmprestimo = ficha_emprestimo
+        console.log(ficha_emprestimo)
       }
     )
 
@@ -211,5 +228,14 @@ export class EquipamentoComponent implements OnInit {
         )
       }
     )
+  }
+
+  public listarTodos(): void{
+    this.listar = false
+  }
+
+  public listarAlugados(): void{
+    this.listar = true
+    this.alugado = false
   }
 }

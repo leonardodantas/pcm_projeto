@@ -1,0 +1,74 @@
+<div class="container-fluid mb-4">
+    <div [ngClass]="{
+      'd-none': mostrarForm
+    }">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">REQUISIÇÕES LIBERADAS</h3>
+    <div class="alert alert-secondary text-center" role="alert" *ngIf="fichaIsValid !== true; else listaRequisicao">
+      NENHUMA REQUISIÇÃO LIBERADA
+    </div>
+    <ng-template #listaRequisicao>
+    <table class="table table-bordered table-sm bg-light" >
+        <thead >
+          <th>ID</th>
+          <th>EQUIPAMENTO</th>
+          <th>DATA REQUISIÇÃO</th>
+          <th>DATA LIBERAÇÃO</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let equipamento of ficha_emprestimo">
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.id }} </a>  </td>
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.nome}} </a>  </td>
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.data_requisicao | date: 'dd/MM/yyyy'}} </a>  </td>
+            <td (dblclick)="selecionar(equipamento)"> <a  class="text-decoration-none text-dark"> {{ equipamento.data_emprestimo | date: 'dd/MM/yyyy'}} </a>  </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
+  </div>
+  <div [ngClass]="{
+    'd-none': !mostrarForm
+  }">
+    <div class="mt-4 border border-dark rounded">
+        <div class="bg-secondary p-2">
+          <button type="button" class="close text-white" aria-label="Close" (click)="cancelar()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <h3 class="text-center font-weight-bold text-uppercase text-white">DEVOLVER</h3>
+
+        </div>
+        <div class="bg-light p-3 pr-4 pl-4">
+        <form [formGroup]="formulario">
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label >ID</label>
+                <input type="text" class="form-control" readonly formControlName="id">
+              </div>
+              <div class="form-group col-md-5">
+                  <label >DATA ENVIO</label>
+                  <input type="text" class="form-control"  readonly formControlName="data_envio">
+                </div>
+              <div class="form-group col-md-5">
+                <label >DATA LIBERAÇÃO</label>
+                <input type="text" class="form-control"  readonly formControlName="data_liberacao">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>EQUIPAMENTO</label>
+              <input type="text" class="form-control"  readonly formControlName="equipamento">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button"  class="btn btn-success btn-lg btn-block" (click)="aceitar()">LIBERAR</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn btn-danger btn-lg btn-block" (click)="cancelar()">CANCELAR</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="p-4 bg-secondary"></div>
+        </div>
+  </div>
+</div>

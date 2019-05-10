@@ -65,6 +65,10 @@ class RealTime{
   public getRequisicaoNovas(): number{
     return this.requisicaoEspera
   }
+
+  public diminuirRequisicoes(): void{
+    this.requisicaoEspera = this.requisicaoEspera - 1
+  }
 }
 
 export {RealTime}

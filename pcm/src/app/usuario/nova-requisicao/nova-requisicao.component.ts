@@ -65,6 +65,8 @@ export class NovaRequisicaoComponent implements OnInit {
       '',
       '',
       '',
+      '',
+      '',
       this.form_requisicao.controls.descricao_requisicao.value,
       '',
       ''

@@ -57,7 +57,7 @@ export class AndamentoComponent implements OnInit {
     this.form_andamento.controls.id.setValue(this.manu_equipM.id)
 
     const datePipe = new DatePipe('en-US')
-    let dataEnvio = datePipe.transform(this.manu_equipM.data_envio, 'dd/MM/yyy')
+    let dataEnvio = datePipe.transform(this.manu_equipM.data_envio, 'dd/MM/yyyy')
     this.form_andamento.controls.data_envio.setValue(dataEnvio)
 
     this.form_andamento.controls.equipamento.setValue(this.manu_equipM.nome)

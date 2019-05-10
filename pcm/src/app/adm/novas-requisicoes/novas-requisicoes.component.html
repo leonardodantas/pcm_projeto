@@ -1,6 +1,14 @@
-<div class="container-fluid">
+<div class="container-fluid mb-4">
+  <div class="alert alert-primary text-center" role="alert" *ngIf="finalizar === true">
+    {{status}}
+  </div>
   <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4">
     <h3 class="text-center font-weight-bold text-uppercase text-white">EM ESPERA</h3>
+
+    <div class="alert alert-secondary text-center" role="alert" *ngIf="isValidFicha !== true; else listarEspera">
+      NENHUMA REQUISIÇÃO EM ESPERA
+    </div>
+    <ng-template #listarEspera>
     <table class="table table-bordered table-sm bg-light">
       <thead>
         <tr>
@@ -17,5 +25,51 @@
         </tr>
       </tbody>
     </table>
+  </ng-template>
   </div>
+
+  <div class="mt-4 border border-dark rounded" *ngIf="liberarEquipamento === true">
+    <div class="bg-secondary p-2">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">LIBERAR</h3>
+
+    </div>
+    <div class="bg-light p-3 pr-4 pl-4">
+    <form [formGroup]="form_liberarEquipament">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label >ID</label>
+            <input type="text" class="form-control" readonly formControlName="id">
+          </div>
+          <div class="form-group col-md-4">
+              <label >DATA ENVIO</label>
+              <input type="text" class="form-control"  readonly formControlName="data_envio">
+            </div>
+          <div class="form-group col-md-6">
+            <label >EQUIPAMENTO</label>
+            <input type="text" class="form-control"  readonly formControlName="equipamento">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>USUARIO</label>
+          <input type="text" class="form-control"  readonly formControlName="usuario">
+        </div>
+        <div class="form-group">
+          <label>DESCRIÇÃO REQUISIÇÃO</label>
+          <textarea class="form-control" rows="3"  readonly formControlName="descricao_requisicao"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button"  class="btn btn-success btn-lg btn-block" (click)="aceitar()">LIBERAR</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-info btn-lg btn-block" (click)="recusar()">RECUSAR</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-danger btn-lg btn-block" (click)="cancelar()">CANCELAR</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="p-4 bg-secondary"></div>
+    </div>
 </div>

@@ -21,6 +21,9 @@ import { HomeUsuarioComponent } from "./usuario/home-usuario/home-usuario.compon
 import { NovaRequisicaoComponent } from "./usuario/nova-requisicao/nova-requisicao.component";
 import { RequisicoesEsperaComponent } from "./usuario/requisicoes-espera/requisicoes-espera.component";
 import { NovasRequisicoesComponent } from "./adm/novas-requisicoes/novas-requisicoes.component";
+import { LiberadasComponent } from "./usuario/liberadas/liberadas.component";
+import { RejeitadasComponent } from "./usuario/rejeitadas/rejeitadas.component";
+import { ListarTodasComponent } from "./usuario/listar-todas/listar-todas.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -43,6 +46,9 @@ export const ROUTES: Routes = [
   {path: 'usuario', component: UsuarioComponent, canActivate: [AutenticacaoGuardServiceUsuario], children:[
     {path: '', component: HomeUsuarioComponent},
     {path: 'nova-requisicao', component: NovaRequisicaoComponent},
-    {path: 'requsicao-espera', component: RequisicoesEsperaComponent}
+    {path: 'requsicao-espera', component: RequisicoesEsperaComponent},
+    {path: 'liberadas', component: LiberadasComponent},
+    {path: 'rejeitadas', component: RejeitadasComponent},
+    {path: 'listar', component: ListarTodasComponent}
   ]}
 ]

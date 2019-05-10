@@ -42,6 +42,9 @@ import { HomeUsuarioComponent } from './usuario/home-usuario/home-usuario.compon
 import { NovaRequisicaoComponent } from './usuario/nova-requisicao/nova-requisicao.component';
 import { RequisicoesEsperaComponent } from './usuario/requisicoes-espera/requisicoes-espera.component';
 import { NovasRequisicoesComponent } from './adm/novas-requisicoes/novas-requisicoes.component';
+import { LiberadasComponent } from './usuario/liberadas/liberadas.component';
+import { RejeitadasComponent } from './usuario/rejeitadas/rejeitadas.component';
+import { ListarTodasComponent } from './usuario/listar-todas/listar-todas.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { NovasRequisicoesComponent } from './adm/novas-requisicoes/novas-requisi
     HomeUsuarioComponent,
     NovaRequisicaoComponent,
     RequisicoesEsperaComponent,
-    NovasRequisicoesComponent
+    NovasRequisicoesComponent,
+    LiberadasComponent,
+    RejeitadasComponent,
+    ListarTodasComponent
   ],
   imports: [
     BrowserModule,

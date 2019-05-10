@@ -35,6 +35,36 @@ export class FichaEmprestimoService{
     })))
   }
 
+  public getLiberada(id: number): Observable<FichaEmprestimo[]>{
+
+    return this.http.get('http://localhost:3000/ficha_emprestimo/liberadas/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getRejeitada(id: number): Observable<FichaEmprestimo[]>{
+
+    return this.http.get('http://localhost:3000/ficha_emprestimo/rejeitadas/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getAllUsuario(id: number): Observable<FichaEmprestimo[]>{
+
+    return this.http.get('http://localhost:3000/ficha_emprestimo/all/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
   public getEsperaAll(): Observable<FichaEmprestimo[]>{
 
     return this.http.get('http://localhost:3000/ficha_emprestimo/espera_all')
@@ -43,5 +73,29 @@ export class FichaEmprestimoService{
     }, catchError((err:any)=>{
       return err
     })))
+  }
+
+  public recusar(ficha :FichaEmprestimo): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/ficha_emprestimo/recusar',
+    JSON.stringify(ficha),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=> err)))
+  }
+
+  public aceitar(ficha :FichaEmprestimo): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/ficha_emprestimo/aceitar',
+    JSON.stringify(ficha),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=> err)))
   }
 }

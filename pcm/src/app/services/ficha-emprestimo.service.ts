@@ -122,4 +122,12 @@ export class FichaEmprestimoService{
       return err
     })))
   }
+
+  public getAllFinalizadas(): Observable<FichaEmprestimo[]>{
+
+    return this.http.get('http://localhost:3000/ficha_emprestimo/all/finalizadas')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=> err)))
+  }
 }

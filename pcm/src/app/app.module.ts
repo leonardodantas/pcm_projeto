@@ -45,6 +45,9 @@ import { NovasRequisicoesComponent } from './adm/novas-requisicoes/novas-requisi
 import { LiberadasComponent } from './usuario/liberadas/liberadas.component';
 import { RejeitadasComponent } from './usuario/rejeitadas/rejeitadas.component';
 import { ListarTodasComponent } from './usuario/listar-todas/listar-todas.component';
+import { NovaPendenciaComponent } from './adm/home-adm/pendencia/nova-pendencia/nova-pendencia.component';
+import { ListarComponent } from './adm/home-adm/pendencia/listar/listar.component';
+import { MudarSafraComponent } from './adm/home-adm/pendencia/mudar-safra/mudar-safra.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { ListarTodasComponent } from './usuario/listar-todas/listar-todas.compon
     NovasRequisicoesComponent,
     LiberadasComponent,
     RejeitadasComponent,
-    ListarTodasComponent
+    ListarTodasComponent,
+    NovaPendenciaComponent,
+    ListarComponent,
+    MudarSafraComponent
   ],
   imports: [
     BrowserModule,

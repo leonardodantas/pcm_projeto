@@ -24,6 +24,11 @@ import { NovasRequisicoesComponent } from "./adm/novas-requisicoes/novas-requisi
 import { LiberadasComponent } from "./usuario/liberadas/liberadas.component";
 import { RejeitadasComponent } from "./usuario/rejeitadas/rejeitadas.component";
 import { ListarTodasComponent } from "./usuario/listar-todas/listar-todas.component";
+import { PendenciaComponent } from "./adm/home-adm/pendencia/pendencia.component";
+import { patch } from "webdriver-js-extender";
+import { NovaPendenciaComponent } from "./adm/home-adm/pendencia/nova-pendencia/nova-pendencia.component";
+import { ListarComponent } from "./adm/home-adm/pendencia/listar/listar.component";
+import { MudarSafraComponent } from "./adm/home-adm/pendencia/mudar-safra/mudar-safra.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -34,7 +39,13 @@ export const ROUTES: Routes = [
     {path: 'funcoes', component: FuncoesComponent},
     {path: 'equipamento', component: EquipamentoComponent},
     {path: 'manu-adm', component: ManutecaoAdmComponent},
-    {path: 'requisicoes', component: NovasRequisicoesComponent}
+    {path: 'requisicoes', component: NovasRequisicoesComponent},
+    {path: 'pendencias', component: PendenciaComponent, children:[
+      {path: '', component: NovaPendenciaComponent},
+      {path: 'nova', component: NovaPendenciaComponent},
+      {path: 'concluidas', component: ListarComponent},
+      {path: 'mudar-safra',component: MudarSafraComponent}
+    ]}
  ] },
   {path: 'manutencao', component: ManutencaoComponent, canActivate: [AutenticacaoGuardServiceManutencao], children:[
     {path: '', component: HomeManutencaoComponent},

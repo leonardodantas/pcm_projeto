@@ -1,3 +1,31 @@
-<p>
-  home-usuario works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+      <h3 class="text-center font-weight-bold text-uppercase text-white">ULTIMAS REQUISIÇÕES LIBERADAS</h3>
+      <div class="alert alert-secondary text-center" role="alert" *ngIf="isFichaEmprestimo === false; else listarFichas">
+        NENHUMA REQUISIÇÃO RECENTE
+      </div>
+    <ng-template #listarFichas>
+    <table class="table table-bordered table-sm bg-light" >
+      <thead >
+        <th>ID</th>
+        <th>EQUIPAMENTO</th>
+        <th>DATA REQUISIÇÃO</th>
+        <th>DATA LIBERAÇÃO</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipamento of ficha_emprestimo">
+          <td> <a  class="text-decoration-none text-dark"> {{ equipamento.id }} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ equipamento.nome}} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ equipamento.data_requisicao | date: 'dd/MM/yyyy'}} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ equipamento.data_emprestimo | date: 'dd/MM/yyyy'}} </a>  </td>
+        </tr>
+      </tbody>
+      </table>
+    </ng-template>
+  </div>
+  </div>
+</div>
+
+</div>

@@ -41,7 +41,9 @@ export class EquipamentoComponent implements OnInit {
 
   public listar: boolean = false
 
-  public equipamentosAlugados: Equipamento[]
+  public finalizada: boolean = true
+  public fichaEmprestimoFinalizada: FichaEmprestimo[]
+
   public fichaEmprestimo: FichaEmprestimo[]
   public alugado: boolean = true
 
@@ -55,7 +57,6 @@ export class EquipamentoComponent implements OnInit {
     this.equipamentoService.get().subscribe(
       (equipamentos: Equipamento[])=>{
         this.equipamentos = equipamentos
-        this.equipamentosAlugados = equipamentos
         this.condicaoEquipamento()
       }
     )
@@ -63,7 +64,13 @@ export class EquipamentoComponent implements OnInit {
     this.fichaEmprestimoService.getAllAlugadas().subscribe(
       (ficha_emprestimo: FichaEmprestimo[])=>{
         this.fichaEmprestimo = ficha_emprestimo
-        console.log(ficha_emprestimo)
+      }
+    )
+
+    this.fichaEmprestimoService.getAllFinalizadas().subscribe(
+      (ficha_emprestimo: FichaEmprestimo[])=>{
+        this.fichaEmprestimoFinalizada = ficha_emprestimo
+
       }
     )
 
@@ -232,10 +239,19 @@ export class EquipamentoComponent implements OnInit {
 
   public listarTodos(): void{
     this.listar = false
+    this.alugado = true
+    this.finalizada = true
   }
 
   public listarAlugados(): void{
     this.listar = true
     this.alugado = false
+    this.finalizada = true
+  }
+
+  public listarFinalizadas(): void{
+    this.listar = true
+    this.alugado = true
+    this.finalizada = false
   }
 }

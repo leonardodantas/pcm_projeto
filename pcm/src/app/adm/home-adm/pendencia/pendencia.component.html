@@ -1,3 +1,16 @@
-<p>
-  pendencia works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-primary text-center" ><a href="" routerLink="nova">NOVA PENDENCIA</a></li>
+        <li class="list-group-item list-group-item-success text-center"><a href="" routerLink="concluidas">CONCLUIDAS</a></li>
+        <li class="list-group-item list-group-item-secondary text-center">ANDAMENTO</li>
+        <li class="list-group-item list-group-item-danger text-center">ATRASADAS</li>
+        <li class="list-group-item list-group-item-warning text-center"> <a href="" routerLink="mudar-safra">MUDAR SAFRA</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+       <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

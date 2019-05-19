@@ -56,4 +56,12 @@ export class UsuariosService{
     })))
   }
 
+  public getUserForPend(): Observable<Usuario[]>{
+
+    return this.http.get('http://localhost:3000/user/pendencia')
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }))
+  }
+
 }

@@ -45,7 +45,7 @@
         <button class="btn btn-info btn-lg btn-block" (click)="listarAlugados()">ALUGADOS</button>
     </div>
     <div class="col-md-3">
-        <button class="btn btn-info btn-lg btn-block" (click)="listarTodos()">FINALIZADOS</button>
+        <button class="btn btn-info btn-lg btn-block" (click)="listarFinalizadas()">FINALIZADOS</button>
     </div>
   </div>
   <div class="alert alert-success mt-2" role="alert" *ngIf="insertSuccess === true">
@@ -98,27 +98,51 @@
   <table class="table table-bordered table-sm bg-light">
       <thead>
         <tr>
-          <th scope="col">Equipamento</th>
-          <th scope="col" class="text-center">Ações</th>
-          <th scope="col" class="text-center">Condição</th>
+          <th scope="col">ID</th>
+          <th scope="col">EQUIPAMENTO</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">MOTIVO</th>
+          <th scope="col">DATA</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let equipamentos of equipamentosAlugados">
-          <td> {{ equipamentos.nome }} </td>
-          <td> <div class="text-center">
-            <button class="btn btn-primary m-1 btn-sm" (click)="editar(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Editar</button>
-            <button class="btn btn-danger m-1 btn-sm" (click)="enviarManutencao(equipamentos)" [disabled]="equipamentos.status != 'LIVRE' ">Manutenção</button>
-          </div>
-          </td>
-          <td [ngClass]="{'text-center': true,
-          'bg-success' : condicaoEquipamentoVal(equipamentos),
-          'bg-danger': condicaoEquipamentoErr(equipamentos),
-          'bg-warning': condicaoEquipamentoOcu(equipamentos)}">
-            <div class="text-center font-weight-bold text-uppercase text-white">
-                {{ equipamentos.status }}
-            </div>
-          </td>
+        <tr *ngFor="let ficha of fichaEmprestimo ">
+          <td> {{ ficha.id }} </td>
+          <td> {{ ficha.nome }} </td>
+          <td> {{ ficha.nome_usuario }} </td>
+          <td> {{ ficha.motivo_emprestimo }} </td>
+          <td> {{ ficha.data_requisicao | date: 'dd/MM/yyyy' }} </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div [ngClass]="{
+    'd-none': finalizada} ">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4  mb-4">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">EQUIPAMENTOS FINALIZADOS</h3>
+  <table class="table table-bordered table-sm bg-light">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">EQUIPAMENTO</th>
+          <th scope="col">USUARIO</th>
+          <th scope="col">MOTIVO</th>
+          <th scope="col">REQUISICÃO</th>
+          <th scope="col">LIBERAÇÃO</th>
+          <th scope="col">DEVOLUÇÃO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ficha of fichaEmprestimoFinalizada ">
+          <td> {{ ficha.id }} </td>
+          <td> {{ ficha.nome }} </td>
+          <td> {{ ficha.nome_usuario }} </td>
+          <td> {{ ficha.motivo_emprestimo }} </td>
+          <td> {{ ficha.data_requisicao | date: 'dd/MM/yyyy' }} </td>
+          <td> {{ ficha.data_emprestimo | date: 'dd/MM/yyyy' }} </td>
+          <td> {{ ficha.data_devolucao | date: 'dd/MM/yyyy' }} </td>
         </tr>
       </tbody>
     </table>

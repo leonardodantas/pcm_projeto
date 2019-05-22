@@ -48,6 +48,9 @@ import { ListarTodasComponent } from './usuario/listar-todas/listar-todas.compon
 import { NovaPendenciaComponent } from './adm/home-adm/pendencia/nova-pendencia/nova-pendencia.component';
 import { ListarComponent } from './adm/home-adm/pendencia/listar/listar.component';
 import { MudarSafraComponent } from './adm/home-adm/pendencia/mudar-safra/mudar-safra.component';
+import { PendenciaAtualComponent } from './usuario/pendencia-atual/pendencia-atual.component';
+import { PendenciaAtrasadaComponent } from './usuario/pendencia-atrasada/pendencia-atrasada.component';
+import { PendenciaConcluidaComponent } from './usuario/pendencia-concluida/pendencia-concluida.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { MudarSafraComponent } from './adm/home-adm/pendencia/mudar-safra/mudar-
     ListarTodasComponent,
     NovaPendenciaComponent,
     ListarComponent,
-    MudarSafraComponent
+    MudarSafraComponent,
+    PendenciaAtualComponent,
+    PendenciaAtrasadaComponent,
+    PendenciaConcluidaComponent
   ],
   imports: [
     BrowserModule,

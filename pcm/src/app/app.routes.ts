@@ -29,6 +29,9 @@ import { patch } from "webdriver-js-extender";
 import { NovaPendenciaComponent } from "./adm/home-adm/pendencia/nova-pendencia/nova-pendencia.component";
 import { ListarComponent } from "./adm/home-adm/pendencia/listar/listar.component";
 import { MudarSafraComponent } from "./adm/home-adm/pendencia/mudar-safra/mudar-safra.component";
+import { PendenciaAtualComponent } from "./usuario/pendencia-atual/pendencia-atual.component";
+import { PendenciaAtrasadaComponent } from "./usuario/pendencia-atrasada/pendencia-atrasada.component";
+import { PendenciaConcluidaComponent } from "./usuario/pendencia-concluida/pendencia-concluida.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -60,6 +63,9 @@ export const ROUTES: Routes = [
     {path: 'requsicao-espera', component: RequisicoesEsperaComponent},
     {path: 'liberadas', component: LiberadasComponent},
     {path: 'rejeitadas', component: RejeitadasComponent},
-    {path: 'listar', component: ListarTodasComponent}
+    {path: 'listar', component: ListarTodasComponent},
+    {path: 'pendencia-atual', component: PendenciaAtualComponent},
+    {path: 'pendencia-atrasada', component: PendenciaAtrasadaComponent},
+    {path: 'pendencia-concluida', component: PendenciaConcluidaComponent}
   ]}
 ]

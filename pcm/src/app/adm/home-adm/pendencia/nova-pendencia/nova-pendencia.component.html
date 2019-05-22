@@ -1,3 +1,6 @@
+<div class="alert alert-secondary text-center" role="alert" *ngIf="pendenciaCriada === true">
+  PENDENCIA CRIADA COM SUCESSO
+</div>
 <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-1 mb-2">
   <h3 class="text-center font-weight-bold text-uppercase text-white mt-2">NOVA PENDENCIA</h3>
 <form [formGroup]="pendencia" class="bg-white">
@@ -9,11 +12,11 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-4">
       <label >DATA LIMITE</label>
       <input  type="date" class="form-control" formControlName="data_limite">
     </div>
-    <div class="form-group col-md-9">
+    <div class="form-group col-md-8">
       <label >ASSUNTO</label>
       <input class="form-control" formControlName="assunto" >
     </div>
@@ -22,12 +25,43 @@
     <label >DESCRIÇÃO</label>
     <textarea class="form-control" formControlName="descricao" rows="3"></textarea>
   </div>
-  <div class="form-row mt-2">
+  <div class="form-row mt-2" *ngIf="criar !== true">
     <div class="col-md-6 text-center">
-      <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!pendencia.valid" (click)="criarPendencia()">CRIAR</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!pendencia.valid" (click)="criarPendencia()">INICIAR</button>
     </div>
     <div class="col-md-6 text-center">
         <button type="submit" class="btn btn-danger btn-lg btn-block"  (click)="cancelar()">CANCELAR</button>
+      </div>
+  </div>
+  <div *ngIf="criar === true">
+    <h3 class="text-center font-weight-bold text-uppercase">ESCOLHER USUARIOS</h3>
+    <table class="table table-bordered table-sm bg-light mt-4">
+        <thead>
+          <tr>
+            <th scope="col">NOME</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col" class="text-center">AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosPend">
+            <td> {{ usuario.nome }} </td>
+            <td> {{ usuario.email }} </td>
+            <td> <div class="text-center">
+                  <button class="btn btn-primary m-1 btn-sm" (click)="adicionar(usuario)" [disabled]="!testeButton(usuario)" >Adicionar</button>
+                  <button class="btn btn-danger m-1 btn-sm"  (click)="remover(usuario)" [disabled]="testeButton(usuario)">Remover</button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-row mt-2">
+        <div class="col-md-6 text-center">
+          <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!testeEnviarPend" (click)="enviarPendencia()">CRIAR</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button type="submit" class="btn btn-danger btn-lg btn-block"  (click)="cancelarPendencia()">CANCELAR</button>
+          </div>
       </div>
   </div>
 </div>

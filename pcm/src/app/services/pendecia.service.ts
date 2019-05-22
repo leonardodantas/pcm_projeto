@@ -4,6 +4,7 @@ import { Pendencia } from "../model/pendencia";
 import { Headers, Http, Response, RequestOptions } from "@angular/http";
 import { map, catchError } from 'rxjs/operators'
 import { PendenciaUsuario } from "../model/pendencia_usuario";
+import { Usuario } from "../model/usuario";
 
 @Injectable()
 export class PendenciaService{
@@ -12,7 +13,7 @@ export class PendenciaService{
     private http: Http
   ){}
 
-  public inserirPendencia(pendencia: Pendencia): Observable<Response>{
+  public inserirPendencia(pendencia: Pendencia): Observable<number>{
 
     let headers = new Headers()
     headers.append('Content-type', 'application/json')
@@ -20,7 +21,8 @@ export class PendenciaService{
     JSON.stringify(pendencia),
     new RequestOptions({ headers: headers})
     ).pipe(map((response: Response)=>{
-      return response
+      console.log(response.json()[0].id)
+      return response.json()[0].id
     }, catchError((err:any)=>{
       return err
     })))
@@ -35,6 +37,15 @@ export class PendenciaService{
     new RequestOptions({headers:headers})
     ).pipe(map((response: Response)=>{
       return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getPendenciasUsuario(id: number): Observable<PendenciaUsuario[]>{
+    return this.http.get('http://localhost:3000/pendencia_usuario/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
     }, catchError((err:any)=>{
       return err
     })))

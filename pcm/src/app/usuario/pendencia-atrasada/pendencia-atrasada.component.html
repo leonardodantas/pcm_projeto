@@ -1,3 +1,125 @@
-<p>
-  pendencia-atrasada works!
-</p>
+<div class="container-fluid">
+  <div [ngClass]="{'d-none': abrirForm }">
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+        <h3 class="text-center font-weight-bold text-uppercase text-white">PENDENCIAS EM ANDAMENTO</h3>
+        <div class="alert alert-secondary text-center" role="alert" *ngIf="isPendenciaUsuario === false; else listarPendencias">
+          NENHUMA PENDENCIA
+        </div>
+      <ng-template #listarPendencias>
+      <table class="table table-bordered table-sm bg-light" >
+        <thead >
+          <th>COD</th>
+          <th>ASSUNTO</th>
+          <th>DATA CRIAÇÃO</th>
+          <th>DATA LIMITE</th>
+          <th>PORCENTAGEM INDIVIDUAL</th>
+          <th>PORCENTAGEM GERAL</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pendencia of pendenciaUsuario">
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.cod }} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.assunto}} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.data_criacao | date: 'dd/MM/yyyy'}} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.data_limite | date: 'dd/MM/yyyy'}} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.porc_total_atual}} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ pendencia.porcetagem }} </a>  </td>
+          </tr>
+        </tbody>
+        </table>
+      </ng-template>
+    </div>
+    </div>
+  </div>
+</div>
+<div [ngClass]="{'d-none':  !abrirForm }">
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mb-3">
+        <button type="button" class="close text-white mr-3" aria-label="Close" (click)="cancelar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="text-center font-weight-bold text-uppercase text-white">ATUALIZAÇÕES</h3>
+        <div class="alert alert-secondary text-center" role="alert" *ngIf="qtdAtualizadas === false; else listarAtualizacao">
+          NENHUMA ATUALIZAÇÃO
+        </div>
+      <ng-template #listarAtualizacao>
+      <table class="table table-bordered table-sm bg-light">
+        <thead >
+          <th>DATA REALIZADA</th>
+          <th>ATUALIZAÇÃO</th>
+          <th>PORCENTAGEM</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let atualizadas of atualizacaoPendencias">
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ atualizadas.data_realizada | date: 'dd/mm/yyyy' }} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ atualizadas.descricao }} </a>  </td>
+            <td (dblclick)="selecionarPendencia(pendencia)"> <a  class="text-decoration-none text-dark"> {{ atualizadas.porc_total_atual}} </a>  </td>
+          </tr>
+        </tbody>
+        </table>
+      </ng-template>
+    </div>
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-1 mb-4">
+        <button type="button" class="close text-white mr-3" aria-label="Close" (click)="cancelar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div *ngIf="atualizarPend === true;else msgFinalizada">
+        <h3 class="text-center font-weight-bold text-uppercase text-white mt-2">ATUALIZAÇÃO</h3>
+      <form [formGroup]="form_pendenciaUsuario" class="bg-white" novalidate >
+        <div class="m-4 pt-1 pb-2 ">
+        <div class="form-row">
+          <div class="col-md-4">
+            <label >CODIGO</label>
+            <input class="form-control" readonly formControlName="cod" readonly>
+          </div>
+          <div class="col-md-4">
+            <label >DATA CRIAÇÃO</label>
+            <input class="form-control" readonly formControlName="data_criacao" readonly>
+            </div>
+          <div class="col-md-4">
+            <label >DATA LIMITE</label>
+            <input class="form-control" readonly formControlName="data_limite" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class=" col-md-12">
+            <label >ASSUNTO</label>
+            <input class="form-control" formControlName="assunto" readonly>
+          </div>
+        </div>
+        <div class="form-row">
+        <div class="col-md-12">
+          <label >DESCRIÇÃO</label>
+          <textarea class="form-control" formControlName="descricao" rows="3" readonly></textarea>
+        </div>
+        </div>
+        <div class="form-row">
+        <div class=" col-md-12">
+          <label >ATUALIZAÇÃO</label>
+          <textarea class="form-control" formControlName="atualizacao" rows="3"></textarea>
+        </div>
+        </div>
+        <div class="form-row">
+        <div class=" col-md-12">
+            <label >PORCENTAGEM FOLLOW-UP ATUAL</label>
+            <input type="number" class="form-control" formControlName="porcentagem" value="{{porcentagemMinina}}">
+          </div>
+        </div>
+        <div class="form-row mt-2 ">
+            <div class="col-md-6">
+              <button (click)="followUp()" class="btn btn-primary btn-lg btn-block" [disabled]="!form_pendenciaUsuario.valid">TESTAR</button>
+            </div>
+            <div class="col-md-6">
+              <button (click)="cancelar()" class="btn btn-danger text-white btn-lg btn-block" >CANCELAR</button>
+            </div>
+          </div>
+      </div>
+
+      </form>
+    </div>
+      <ng-template #msgFinalizada>
+        <h4 class="text-center font-weight-bold text-uppercase text-white mt-4">A SUA PARTE FOI FINALIZADA NESTA PENDENCIA</h4>
+      </ng-template>
+      </div>
+</div>
+</div>

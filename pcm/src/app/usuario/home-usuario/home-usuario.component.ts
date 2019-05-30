@@ -19,6 +19,9 @@ export class HomeUsuarioComponent implements OnInit {
   public pendenciaUsuario: PendenciaUsuario[]
   public isPendenciaUsuario: boolean
 
+  public pendenciaUsuarioAtrasadas: PendenciaUsuario[]
+  public isPendenciaUsuarioAtrasada: boolean
+
   constructor(
     private fichaEmprestimoService: FichaEmprestimoService,
     private pendenciaUsuarioService: PendenciaService
@@ -36,8 +39,26 @@ export class HomeUsuarioComponent implements OnInit {
     this.pendenciaUsuarioService.getPendenciasUsuario(id).subscribe(
       (pendencia_usuario: PendenciaUsuario[])=>{
         this.pendenciaUsuario = pendencia_usuario
-        if(pendencia_usuario.length > 5)
-          this.pendenciaUsuario.splice(0,5)
+        this.pendenciaUsuario.sort((a,b)=>{
+          return (a.id < b.id) ? 1 : -1
+        })
+        if(pendencia_usuario.length > 5){
+          this.pendenciaUsuario = this.pendenciaUsuario.splice(0,5)
+        }
+
+      }
+    )
+
+    this.pendenciaUsuarioService.getPendenciasUsuarioAtrasadas(id).subscribe(
+      (pendencia_usuario: PendenciaUsuario[])=>{
+        this.pendenciaUsuarioAtrasadas = pendencia_usuario
+        this.isPendenciaUsuarioAtrasada = pendencia_usuario.length > 0 ? false : true
+        this.pendenciaUsuarioAtrasadas.sort((a,b)=>{
+          return (a.id < b.id) ? 1 : -1
+        })
+        if(pendencia_usuario.length > 5 ){
+          this.pendenciaUsuarioAtrasadas = this.pendenciaUsuarioAtrasadas.splice(0,5)
+        }
       }
     )
   }

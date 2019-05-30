@@ -30,7 +30,7 @@
 <div class="row mt-4">
   <div class="col-md-12">
     <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
-      <h3 class="text-center font-weight-bold text-uppercase text-white">ULTIMAS PENDENCIAS CRIADAS</h3>
+      <h3 class="text-center font-weight-bold text-uppercase text-white">ULTIMAS PENDENCIAS CRIADAS EM ANDAMENTO</h3>
       <div class="alert alert-secondary text-center" role="alert" *ngIf="isPendenciaUsuario === false; else listarPendencias">
         NENHUMA PENDENCIA RECENTE
       </div>
@@ -44,6 +44,35 @@
       </thead>
       <tbody>
         <tr *ngFor="let pendencia of pendenciaUsuario">
+          <td> <a  class="text-decoration-none text-dark"> {{ pendencia.cod }} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ pendencia.assunto}} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ pendencia.data_criacao | date: 'dd/MM/yyyy'}} </a>  </td>
+          <td> <a  class="text-decoration-none text-dark"> {{ pendencia.data_limite | date: 'dd/MM/yyyy'}} </a>  </td>
+        </tr>
+      </tbody>
+      </table>
+    </ng-template>
+  </div>
+  </div>
+</div>
+
+<div class="row mt-4 mb-4">
+  <div class="col-md-12">
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 ">
+      <h3 class="text-center font-weight-bold text-uppercase text-white">ULTIMAS PENDENCIAS CRIADAS EM ATRASO</h3>
+      <div class="alert alert-secondary text-center" role="alert" *ngIf="isPendenciaUsuarioAtrasada === true; else listarPendenciasAtrasada">
+        NENHUMA PENDENCIA
+      </div>
+    <ng-template #listarPendenciasAtrasada>
+    <table class="table table-bordered table-sm bg-light" >
+      <thead >
+        <th>COD</th>
+        <th>ASSUNTO</th>
+        <th>DATA CRIAÇÃO</th>
+        <th>DATA LIMITE</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pendencia of pendenciaUsuarioAtrasadas">
           <td> <a  class="text-decoration-none text-dark"> {{ pendencia.cod }} </a>  </td>
           <td> <a  class="text-decoration-none text-dark"> {{ pendencia.assunto}} </a>  </td>
           <td> <a  class="text-decoration-none text-dark"> {{ pendencia.data_criacao | date: 'dd/MM/yyyy'}} </a>  </td>

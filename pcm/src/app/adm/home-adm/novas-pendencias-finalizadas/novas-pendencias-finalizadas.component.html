@@ -1,0 +1,97 @@
+<div class="container-fluid mb-4">
+  <div class="alert text-center bg-secondary text-white" role="alert" *ngIf="finalzacaoSucess === true">
+    PENDENCIA FINALIZADA COM SUCESSO
+  </div>
+  <div class="alert text-center bg-secondary text-white" role="alert" *ngIf="finalzacaoErr === true">
+      ERRO AO FINALIZAR PENDENCIA
+    </div>
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4" *ngIf="infoFinalizadas !==true; else mostrarDetalhes">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">AGUARDANDO FINALIZAÇÃO</h3>
+    <table class="table table-bordered table-sm bg-light">
+      <thead>
+        <tr>
+          <th scope="col">COD</th>
+          <th scope="col">ASSUNTO</th>
+          <th scope="col">CRIAÇÃO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pend of pendencias" >
+          <td (dblclick)="visualizarAtualizacoes(pend) "> <a  class="text-decoration-none text-dark"> {{ pend.cod }} </a>  </td>
+          <td (dblclick)="visualizarAtualizacoes(pend) "> <a   class="text-decoration-none text-dark"> {{ pend.assunto }}  </a> </td>
+          <td (dblclick)="visualizarAtualizacoes(pend) "> <a   class="text-decoration-none text-dark">  {{ pend.data_criacao | date: 'dd/MM/yyyy' }} </a> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #mostrarDetalhes>
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4">
+        <button type="button" class="close text-white pr-3" aria-label="Close" (click)="cancelar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="text-center font-weight-bold text-uppercase text-white mt-2">DETALHES PENDENCIA</h3>
+        <form [formGroup]="form_detalhes" class="bg-white" novalidate >
+            <div class="m-4 pt-1 pb-2 ">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label >CODIGO</label>
+                <input class="form-control" readonly formControlName="cod" readonly>
+              </div>
+              <div class="col-md-4">
+                <label >DATA CRIAÇÃO</label>
+                <input class="form-control" readonly formControlName="data_criacao" readonly>
+                </div>
+              <div class="col-md-4">
+                <label >DATA LIMITE</label>
+                <input class="form-control" readonly formControlName="data_limite" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class=" col-md-12">
+                <label >ASSUNTO</label>
+                <input class="form-control" formControlName="assunto" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+            <div class="col-md-12">
+              <label >DESCRIÇÃO</label>
+              <textarea class="form-control" formControlName="descricao" rows="3" readonly></textarea>
+            </div>
+            </div>
+          </div>
+          <div class="mb-4 mr-2 ml-2">
+          <h3 class="text-center font-weight-bold text-uppercase text-white bg-secondary p-3">ATUALIZAÇÕES</h3>
+
+          <table class="table table-bordered table-sm bg-light ">
+            <thead>
+              <tr>
+                <th scope="col">USUARIO</th>
+                <th scope="col">DATA REALIZADA</th>
+                <th scope="col">DESCRIÇÃO</th>
+                <th scope="col">PORCENTAGEM</th>
+              </tr>
+            </thead>
+              <tbody>
+                <tr *ngFor="let atualizacoes of pendencia_usuarios" >
+                  <td> <a  class="text-decoration-none text-dark"> {{ atualizacoes.nome  }} </a>  </td>
+                  <td> <a   class="text-decoration-none text-dark"> {{ atualizacoes.data_realizada | date: 'dd/MM/yyyy' }}  </a> </td>
+                  <td> <a   class="text-decoration-none text-dark">  {{ atualizacoes.descricao  }} </a> </td>
+                  <td> <a   class="text-decoration-none text-dark">  {{ atualizacoes.porc_atual  }} </a> </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+        <div class="form-row mb-5 pb-3 pl-2 pr-2">
+          <div class="col-md-6">
+            <button  class="btn btn-primary btn-lg btn-block" (click)="finalizar()">FINALIZAR</button>
+          </div>
+          <div class="col-md-6">
+            <button  class="btn btn-warning btn-lg btn-block text-white" (click)="cancelar()">CANCELAR</button>
+          </div>
+        </div>
+          </form>
+
+    </div>
+
+  </ng-template>
+</div>

@@ -51,4 +51,129 @@ export class PendenciaService{
     })))
   }
 
+  public getPendenciasUsuarioAtrasadas(id: number): Observable<PendenciaUsuario[]>{
+    return this.http.get('http://localhost:3000/pendencia_usuario/atrasada/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public atualizarPorcentagemPendencia(pendenciaUsuario: PendenciaUsuario): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/pendencia',
+    JSON.stringify(pendenciaUsuario),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public atualizarPorcentagemUsuario(pendenciaUsuario: PendenciaUsuario): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put('http://localhost:3000/pendencia/usuario',
+    JSON.stringify(pendenciaUsuario),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+
+  }
+
+  public atualizarPendenciaUsuario(pendenciaUsuario: PendenciaUsuario): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.post('http://localhost:3000/pendencia/usuario/atualizacao',
+    JSON.stringify(pendenciaUsuario),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+
+  }
+
+  public getAtualizacaoPendUser(id: number): Observable<PendenciaUsuario[]>{
+
+    return this.http.get('http://localhost:3000/pendencia/atualizacao_pendencia_user/' + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getAtualizacaoPendencia(usuario: number, pendencia: number): Observable<PendenciaUsuario>{
+
+    return this.http.get('http://localhost:3000/pendencia/atualizacao_pendencia_user/' + usuario + '/' + pendencia)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public qtdUsuarios(id: number): Observable<number>{
+
+    return this.http.get(`http://localhost:3000/pendencia/quantidade/` + id)
+    .pipe(map((response: Response)=>{
+      return response.json()[0].count
+    }))
+  }
+
+  public getQtdAguardandoFinalizacao(): Observable<number>{
+
+    return this.http.get(`http://localhost:3000/pendencia/quantidade/aguardando`)
+    .pipe(map((response: Response)=>{
+      return response.json()[0].count
+    }))
+  }
+
+  public getAguardadoFinalizacao(): Observable<Pendencia[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/aguardadando/finalizacao/`)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getAguardanddoFinalizacaoDetalhes(id: number): Observable<PendenciaUsuario[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/info/aguardadando/finalizacao/` + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public finalizarPendencia(pendencia: Pendencia): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+    return this.http.put(`http://localhost:3000/pendencia/finalizar/`,
+    JSON.stringify(pendencia),
+    new RequestOptions({ headers:headers}))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+
+
 }

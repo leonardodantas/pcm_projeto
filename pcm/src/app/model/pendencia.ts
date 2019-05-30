@@ -8,8 +8,8 @@ export class Pendencia{
     public assunto: string,
     public descricao: string,
     public cod: string,
-    public data_cricao: string,
+    public data_criacao: string,
     public data_limite: string,
-    public porcentagem: number
+    public porcetagem: number
   ){}
 }

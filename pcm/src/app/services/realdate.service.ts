@@ -7,6 +7,8 @@ class RealTime{
 
   public requisicaoEspera: number
 
+  public qtdPendenciaAguar: number
+
   constructor(){}
 
   public getQtd(): number{
@@ -68,6 +70,18 @@ class RealTime{
 
   public diminuirRequisicoes(): void{
     this.requisicaoEspera = this.requisicaoEspera - 1
+  }
+
+  public adicionarPendenciasAguard(qtdPendencias: number): void{
+    this.qtdPendenciaAguar = qtdPendencias
+  }
+
+  public diminuirPendenciasAguard(): void{
+    this.qtdPendenciaAguar = this.qtdPendenciaAguar - 1
+  }
+
+  public getQtdPendenciasAguard(): number{
+    return this.qtdPendenciaAguar
   }
 }
 

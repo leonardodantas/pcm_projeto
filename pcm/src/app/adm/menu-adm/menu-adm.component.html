@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-info mb-4">
-  <a class="navbar-brand" routerLink="/adm">Inicio</a>
+  <a class="navbar-brand" routerLink="/adm">INICIO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" *ngIf=" this.realTime.getQtd() > 0">
-        <a class="nav-link text-white" href="#" routerLink="novosUsuarios">Novos Usuarios <span class="badge badge-light">{{ this.realTime.getQtd() }}</span></a>
+        <a class="nav-link text-white" href="#" routerLink="novosUsuarios">NOVOS USUARIOS <span class="badge badge-light">{{ this.realTime.getQtd() }}</span></a>
       </li>
       <li class="nav-item" *ngIf=" this.realTime.getRequisicaoNovas() > 0">
-        <a class="nav-link text-white" href="#" routerLink="requisicoes">Novas Requisições <span class="badge badge-light">{{ this.realTime.getRequisicaoNovas() }}</span></a>
+        <a class="nav-link text-white" href="#" routerLink="requisicoes">NOVAS REQUISIÇÕES <span class="badge badge-light">{{ this.realTime.getRequisicaoNovas() }}</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <li class="nav-item" *ngIf=" this.realTime.getQtdPendenciasAguard() > 0">
+        <a class="nav-link text-white" href="#" routerLink="pendencias-finalizadas">PENDENCIAS FINALIZADAS <span class="badge badge-light">{{ this.realTime.getQtdPendenciasAguard() }}</span></a>
       </li>
     </ul>
     <div class="form-inline text-white">

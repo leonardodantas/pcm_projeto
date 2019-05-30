@@ -99,12 +99,12 @@ export class NovaPendenciaComponent implements OnInit {
   }
 
   public remover(usuario: Usuario): void{
-    let index = this.usuariosPend.indexOf(usuario)
-    this.testeUsuario[index].teste = true
+    let index = this.usuariosEnviar.indexOf(usuario)
+    let indexTeste = this.usuariosPend.indexOf(usuario)
+    this.testeUsuario[indexTeste].teste = true
     this.usuariosEnviar.splice(index,1)
     this.testeEnviarPend = this.usuariosEnviar.length > 0 ? true : false
     console.log(this.usuariosEnviar)
-
   }
 
   public testeButton(usuario: Usuario): boolean{
@@ -144,6 +144,7 @@ export class NovaPendenciaComponent implements OnInit {
             null,
             null,
             null,
+            null,
             null
           )
           this.pendenciaUsuario.push(pendenciaUsuario)
@@ -151,6 +152,7 @@ export class NovaPendenciaComponent implements OnInit {
         }
 
         for(let i=0;i< this.pendenciaUsuario.length;i++){
+
           this.pendenciaService.inserirNovoUsuarioPendencia(this.pendenciaUsuario[i]).subscribe(
             (response: Response)=>{
               console.log(response)

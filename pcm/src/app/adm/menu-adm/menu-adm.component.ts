@@ -5,12 +5,13 @@ import { Usuario } from 'src/app/model/usuario';
 import { RealTime } from 'src/app/services/realdate.service';
 import { FichaEmprestimoService } from 'src/app/services/ficha-emprestimo.service';
 import { FichaEmprestimo } from 'src/app/model/ficha_emprestimo';
+import { PendenciaService } from 'src/app/services/pendecia.service';
 
 @Component({
   selector: 'app-menu-adm',
   templateUrl: './menu-adm.component.html',
   styleUrls: ['./menu-adm.component.css'],
-  providers: [UsuariosService, FichaEmprestimoService]
+  providers: [UsuariosService, FichaEmprestimoService, PendenciaService]
 })
 export class MenuAdmComponent implements OnInit{
 
@@ -19,12 +20,14 @@ export class MenuAdmComponent implements OnInit{
 
   public qtdRequisicaoPendente: number
 
+  public qtdPendAguarFinal: number
+
   constructor(
     private route: Router,
     private usuarioService: UsuariosService,
     private fichaEmprestimoService: FichaEmprestimoService,
+    private pendenciaService: PendenciaService,
     public realTime: RealTime,
-
   ) { }
 
 
@@ -51,6 +54,18 @@ export class MenuAdmComponent implements OnInit{
       },
       ()=>{
         this.realTime.adicionarRequisicaoNovas(this.qtdRequisicaoPendente)
+      }
+    )
+
+    this.pendenciaService.getQtdAguardandoFinalizacao().subscribe(
+      (qtd: number)=>{
+        this.qtdPendAguarFinal = qtd
+      },
+      (err: any)=>{
+        this.qtdPendAguarFinal = 0
+      },
+      ()=>{
+        this.realTime.adicionarPendenciasAguard(this.qtdPendAguarFinal)
       }
     )
 

@@ -100,7 +100,8 @@ export class PendenciaAtualComponent implements OnInit {
           null,
           null,
           null,
-          this.form_pendenciaUsuario.controls.porcentagem.value - (this.pendencia_usuario.porc_total_atual)/this.qtdUsers
+          this.form_pendenciaUsuario.controls.porcentagem.value - (this.pendencia_usuario.porc_total_atual)/this.qtdUsers,
+          null
         )
         let perceAtualizadaGeral =(this.form_pendenciaUsuario.controls.porcentagem.value - (this.pendencia_usuario.porc_total_atual))/this.qtdUsers;
 
@@ -114,6 +115,7 @@ export class PendenciaAtualComponent implements OnInit {
           null,
           null,
           perceAtualizadaGeral,
+          null,
           null,
           null,
           null,
@@ -144,6 +146,7 @@ export class PendenciaAtualComponent implements OnInit {
               null,
               this.form_pendenciaUsuario.controls.porcentagem.value,
               null,
+              null,
               null
             )
             this.pendenciaService.atualizarPorcentagemUsuario(porcentagem_usuario).subscribe(
@@ -168,6 +171,7 @@ export class PendenciaAtualComponent implements OnInit {
                   null,
                   null,
                   this.form_pendenciaUsuario.controls.porcentagem.value,
+                  null,
                   null,
                   null
 

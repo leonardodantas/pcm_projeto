@@ -1,26 +1,18 @@
-<div class="container">
+<div class="container-fluid">
 
-  <div class="row">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-info btn-lg btn-block" [disabled]="!exibirTabelaAndamento" (click)="andamento()" >Em Andamento</button>
-    </div>
-  </div>
-  <div class="row mt-1">
-    <div class="col-md-12">
-      <button type="button" class="btn btn-info btn-lg btn-block"  [disabled]="!exibirTabelaFinalizada" (click)="finalizadas()">Finalizadas</button>
-    </div>
-  </div>
+
   <div *ngIf="qtdManutencaoAndamento === true">
     <div class="alert alert-info mt-3" role="alert" *ngIf="visualizarTabela === false && qtdManutencaoAndamento === false">
       Nenhuma Manutenção em Andamento
     </div>
   </div>
-  <table [ngClass]="{'table bg-info text-white' : true,
-                    'mt-3': true,
-                    'd-none': visualizarTabela}">
+  <div
+  [ngClass]="{'d-none': false,
+              'border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-3 mb-4': true}">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">ANDAMENTO</h3>
+  <table class="table table-bordered table-sm bg-light">
     <thead>
       <tr>
-        <th scope="col">Abrir</th>
         <th scope="col">ID</th>
         <th scope="col">Equipamento</th>
         <th scope="col">Data Envio</th>
@@ -28,14 +20,13 @@
     </thead>
     <tbody>
       <tr *ngFor="let manutencao of manutecao_equip">
-        <td> <button class="btn btn-primary" (click)="visualizarManu(manutencao)"> <i class="far fa-eye"></i> </button> </td>
-        <td> <strong> {{ manutencao.id }} </strong> </td>
-        <th> {{ manutencao.nome }} </th>
-        <td> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
+        <td (click)="visualizarManu(manutencao)"> <strong> {{ manutencao.id }} </strong> </td>
+        <th (click)="visualizarManu(manutencao)"> {{ manutencao.nome }} </th>
+        <td (click)="visualizarManu(manutencao)"> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
       </tr>
     </tbody>
 </table>
-
+</div>
 <div [ngClass]="{'d-none': !visualizarFormAndamento}">
   <div class="bg-light mt-1 p-4 border border-dark mb-2">
       <button type="button" class="close" aria-label="Close" (click)="fechar()">
@@ -76,12 +67,13 @@
 <div class="alert alert-info mt-2" role="alert" *ngIf="visualizarTabelaFinally === false && qtdFinalizada  === false">
   Nenhuma Manutenção Finalizada
 </div>
-<table [ngClass]="{'table bg-info text-white' : true,
-                    'mt-3': true,
-                    'd-none': visualizarTabelaFinally}">
+<div
+[ngClass]="{'d-none': false,
+            'border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-3 mb-4': true}">
+  <h3 class="text-center font-weight-bold text-uppercase text-white">FINALIZADAS</h3>
+<table class="table table-bordered table-sm bg-light">
     <thead>
       <tr>
-        <th scope="col">Abrir</th>
         <th scope="col">ID</th>
         <th scope="col">Equipamento</th>
         <th scope="col">Data Envio</th>
@@ -89,12 +81,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let manutencao of finally_manutencao">
-        <td> <button class="btn btn-primary" (click)="visualizarManu(manutencao)"> <i class="far fa-eye"></i> </button> </td>
-        <td> <strong> {{ manutencao.id }} </strong> </td>
-        <th> {{ manutencao.nome }} </th>
-        <td> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
+        <td (dblclick)="visualizarManu(manutencao)"> <strong> {{ manutencao.id }} </strong> </td>
+        <th (dblclick)="visualizarManu(manutencao)"> {{ manutencao.nome }} </th>
+        <td (dblclick)="visualizarManu(manutencao)"> {{ manutencao.data_envio | date: 'd/M/yyyy' }} </td>
       </tr>
     </tbody>
 </table>
+</div>
 
 </div>

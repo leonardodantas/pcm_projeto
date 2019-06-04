@@ -79,6 +79,17 @@ export class Autenticacao{
     return localStorage.getItem('idUsuario') !== null
   }
 
+  public autenticarGerencia(): boolean{
+    if(this.tokenId === undefined && localStorage.getItem('idUsuario') != null && localStorage.getItem('idCargo') === '1'){
+      this.tokenId = localStorage.getItem('idUsuario')
+    }
+    if(this.tokenId === undefined){
+      this.route.navigate(['/'])
+    }
+
+    return localStorage.getItem('idUsuario') !== null
+  }
+
 }
 
 

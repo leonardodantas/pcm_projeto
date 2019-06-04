@@ -123,6 +123,7 @@ export class NovaPendenciaComponent implements OnInit {
       this.cod_pendencia,
       null,
       this.pendencia.controls.data_limite.value,
+      null,
       null
     )
     this.pendenciaService.inserirPendencia(pendencia).subscribe(
@@ -134,6 +135,7 @@ export class NovaPendenciaComponent implements OnInit {
             null,
             this.usuariosEnviar[i].id,
             id_pendencia,
+            null,
             null,
             null,
             null,

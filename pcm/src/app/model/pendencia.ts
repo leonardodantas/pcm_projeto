@@ -10,6 +10,7 @@ export class Pendencia{
     public cod: string,
     public data_criacao: string,
     public data_limite: string,
-    public porcetagem: number
+    public porcetagem: number,
+    public data_finalizacao: number
   ){}
 }

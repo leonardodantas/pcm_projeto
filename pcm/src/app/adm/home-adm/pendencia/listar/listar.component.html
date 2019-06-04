@@ -1,3 +1,84 @@
-<p>
-  listar works!
-</p>
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4" *ngIf="visualizarPend !== true; else listar">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">CONCLUIDAS</h3>
+    <table class="table table-bordered table-sm bg-light">
+      <thead>
+        <tr>
+          <th>COD</th>
+          <th>ASSUNTO</th>
+          <th>CRIACAO</th>
+          <th>FINALIZACAO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pendencia of pendencias">
+          <td (dblclick)="visualizarInfos(pendencia)"> {{pendencia.cod}} </td>
+          <td (dblclick)="visualizarInfos(pendencia)">{{pendencia.assunto}} </td>
+          <td (dblclick)="visualizarInfos(pendencia)">{{pendencia.data_criacao | date: 'dd/MM/yyyy'}} </td>
+          <td (dblclick)="visualizarInfos(pendencia)">{{pendencia.data_finalizacao | date: 'dd/MM/yyyy'}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #listar>
+      <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mb-3">
+          <button type="button" class="close text-white pr-3" aria-label="Close" (click)="cancelar()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="text-center font-weight-bold text-uppercase text-white mt-2">DETALHES PENDENCIA</h3>
+          <form [formGroup]="form_detalhes" class="bg-white" novalidate >
+              <div class="m-4 pt-1 pb-2 ">
+              <div class="form-row">
+                <div class="col-md-4">
+                  <label >CODIGO</label>
+                  <input class="form-control" readonly formControlName="cod" readonly>
+                </div>
+                <div class="col-md-4">
+                  <label >DATA CRIAÇÃO</label>
+                  <input class="form-control" readonly formControlName="data_criacao" readonly>
+                  </div>
+                <div class="col-md-4">
+                  <label >DATA LIMITE</label>
+                  <input class="form-control" readonly formControlName="data_limite" readonly>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class=" col-md-12">
+                  <label >ASSUNTO</label>
+                  <input class="form-control" formControlName="assunto" readonly>
+                </div>
+              </div>
+              <div class="form-row">
+              <div class="col-md-12">
+                <label >DESCRIÇÃO</label>
+                <textarea class="form-control" formControlName="descricao" rows="3" readonly></textarea>
+              </div>
+              </div>
+            </div>
+            <div class="mb-4 mr-2 ml-2">
+            <h3 class="text-center font-weight-bold text-uppercase text-white bg-secondary p-3">ATUALIZAÇÕES</h3>
+
+            <table class="table table-bordered table-sm bg-light ">
+              <thead>
+                <tr>
+                  <th scope="col">USUARIO</th>
+                  <th scope="col">DATA REALIZADA</th>
+                  <th scope="col">DESCRIÇÃO</th>
+                  <th scope="col">PORCENTAGEM</th>
+                </tr>
+              </thead>
+                <tbody>
+                  <tr *ngFor="let atualizacoes of pendencias_usuarios" >
+                    <td> <a  class="text-decoration-none text-dark"> {{ atualizacoes.nome  }} </a>  </td>
+                    <td> <a   class="text-decoration-none text-dark"> {{ atualizacoes.data_realizada | date: 'dd/MM/yyyy' }}  </a> </td>
+                    <td> <a   class="text-decoration-none text-dark">  {{ atualizacoes.descricao  }} </a> </td>
+                    <td> <a   class="text-decoration-none text-dark">  {{ atualizacoes.porc_atual  }} </a> </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+            </form>
+
+      </div>
+  </ng-template>
+</div>

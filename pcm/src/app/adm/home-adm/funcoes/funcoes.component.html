@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <form [formGroup]="formFuncao" class="mb-3" *ngIf="inserir === true">
         <div class="form-group">
           <label >Nova Função</label>
@@ -25,7 +25,9 @@
     <div class="alert alert-success mt-2" role="alert" *ngIf="updateSuccess === true">
       Função editada com sucesso
     </div>
-    <table class="table table-bordered bg-info text-white">
+    <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-2">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">FUNÇÕES</h3>
+    <table class="table table-bordered table-sm bg-light">
         <thead>
           <tr>
             <th scope="col">Função</th>
@@ -43,4 +45,5 @@
           </tr>
         </tbody>
       </table>
+    </div>
 </div>

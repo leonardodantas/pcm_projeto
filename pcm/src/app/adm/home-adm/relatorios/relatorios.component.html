@@ -1,0 +1,64 @@
+<div class="container-fluid mb-4">
+    <div class="container-fluid">
+        <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-5">
+          <h3 class="text-center font-weight-bold text-uppercase text-white">PENDENCIAS FINALIZADAS</h3>
+          <table class="table table-bordered table-sm bg-light">
+              <thead>
+                <tr>
+                  <th scope="col">COD</th>
+                  <th scope="col">ASSUNTO</th>
+                  <th scope="col">DATA FINALIZACAO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pendencia of pendencias">
+                  <td (dblclick)="relatorioPendencia(pendencia)" > <a class="text-decoration-none text-dark"> {{pendencia.cod}} </a>  </td>
+                  <td (dblclick)="relatorioPendencia(pendencia)"> <a class="text-decoration-none text-dark"> {{pendencia.assunto}} </a> </td>
+                  <td (dblclick)="relatorioPendencia(pendencia)"> <a class="text-decoration-none text-dark"> {{pendencia.data_finalizacao | date: 'dd/MM/yyyy'}}  </a> </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-3">
+            <h3 class="text-center font-weight-bold text-uppercase text-white">MANUTENÇÕES</h3>
+            <table class="table table-bordered table-sm bg-light">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">DATA ENVIO</th>
+                    <th scope="col">DATA REALIZADO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let manu of manutencao" >
+                    <td (dblclick)="relatorioManutencao(manu)"><a class="text-decoration-none text-dark"> {{manu.id}} </a></td>
+                    <td (dblclick)="relatorioManutencao(manu)"><a class="text-decoration-none text-dark"> {{manu.data_envio  | date: 'dd/MM/yyyy'}} </a></td>
+                    <td (dblclick)="relatorioManutencao(manu)"><a class="text-decoration-none text-dark"> {{manu.data_realizado  | date: 'dd/MM/yyyy'}} </a></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+
+          <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-3">
+              <h3 class="text-center font-weight-bold text-uppercase text-white">EMPRESTIMO</h3>
+              <table class="table table-bordered table-sm bg-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">DATA REQUISIÇÃO</th>
+                      <th scope="col">DATA DEVOLUÇÃO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ficha of fichaEmprestimo">
+                      <td (dblclick)="relatioFichaEmprestimo(ficha)"><a class="text-decoration-none text-dark"> {{ficha.id}} </a></td>
+                      <td (dblclick)="relatioFichaEmprestimo(ficha)"><a class="text-decoration-none text-dark"> {{ficha.data_requisicao  | date: 'dd/MM/yyyy'}} </a></td>
+                      <td (dblclick)="relatioFichaEmprestimo(ficha)"><a class="text-decoration-none text-dark"> {{ficha.data_devolucao  | date: 'dd/MM/yyyy'}} </a></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+      </div>
+
+</div>

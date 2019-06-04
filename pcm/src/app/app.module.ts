@@ -52,6 +52,14 @@ import { PendenciaAtualComponent } from './usuario/pendencia-atual/pendencia-atu
 import { PendenciaAtrasadaComponent } from './usuario/pendencia-atrasada/pendencia-atrasada.component';
 import { PendenciaConcluidaComponent } from './usuario/pendencia-concluida/pendencia-concluida.component';
 import { NovasPendenciasFinalizadasComponent } from './adm/home-adm/novas-pendencias-finalizadas/novas-pendencias-finalizadas.component';
+import { CanceladasComponent } from './adm/home-adm/pendencia/canceladas/canceladas.component';
+import { AtrasadasComponent } from './adm/home-adm/pendencia/atrasadas/atrasadas.component';
+import { AndamentoPComponent } from './adm/home-adm/pendencia/andamento-p/andamento-p.component';
+import { GerenciaComponent } from './gerencia/gerencia.component';
+import { MenuGerenciaComponent } from './gerencia/menu-gerencia/menu-gerencia.component';
+import { AutenticacaoGuardServiceGerencia } from './services/autenticacao-guard-gerente.service';
+import { GerenciaHomeComponent } from './gerencia/gerencia-home/gerencia-home.component';
+import { RelatoriosComponent } from './adm/home-adm/relatorios/relatorios.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +97,14 @@ import { NovasPendenciasFinalizadasComponent } from './adm/home-adm/novas-penden
     PendenciaAtualComponent,
     PendenciaAtrasadaComponent,
     PendenciaConcluidaComponent,
-    NovasPendenciasFinalizadasComponent
+    NovasPendenciasFinalizadasComponent,
+    CanceladasComponent,
+    AtrasadasComponent,
+    AndamentoPComponent,
+    GerenciaComponent,
+    MenuGerenciaComponent,
+    GerenciaHomeComponent,
+    RelatoriosComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +113,7 @@ import { NovasPendenciasFinalizadasComponent } from './adm/home-adm/novas-penden
     HttpModule,
 
   ],
-  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao, AutenticacaoGuardServiceManutencao, AutenticacaoGuardServiceUsuario],
+  providers: [ RealTime,AutenticacaoGuardServiceAdm, Autenticacao, AutenticacaoGuardServiceManutencao, AutenticacaoGuardServiceUsuario, AutenticacaoGuardServiceGerencia],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

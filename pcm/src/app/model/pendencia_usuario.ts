@@ -15,6 +15,7 @@ export class PendenciaUsuario{
     public status: string,
     public porc_total_atual: number,
     public atualizacao: string,
-    public data_realizada: string
+    public data_realizada: string,
+    public porc_atual: string
   ){}
 }

@@ -25,7 +25,6 @@ import { LiberadasComponent } from "./usuario/liberadas/liberadas.component";
 import { RejeitadasComponent } from "./usuario/rejeitadas/rejeitadas.component";
 import { ListarTodasComponent } from "./usuario/listar-todas/listar-todas.component";
 import { PendenciaComponent } from "./adm/home-adm/pendencia/pendencia.component";
-import { patch } from "webdriver-js-extender";
 import { NovaPendenciaComponent } from "./adm/home-adm/pendencia/nova-pendencia/nova-pendencia.component";
 import { ListarComponent } from "./adm/home-adm/pendencia/listar/listar.component";
 import { MudarSafraComponent } from "./adm/home-adm/pendencia/mudar-safra/mudar-safra.component";
@@ -33,6 +32,13 @@ import { PendenciaAtualComponent } from "./usuario/pendencia-atual/pendencia-atu
 import { PendenciaAtrasadaComponent } from "./usuario/pendencia-atrasada/pendencia-atrasada.component";
 import { PendenciaConcluidaComponent } from "./usuario/pendencia-concluida/pendencia-concluida.component";
 import { NovasPendenciasFinalizadasComponent } from "./adm/home-adm/novas-pendencias-finalizadas/novas-pendencias-finalizadas.component";
+import { CanceladasComponent } from "./adm/home-adm/pendencia/canceladas/canceladas.component";
+import { AtrasadasComponent } from "./adm/home-adm/pendencia/atrasadas/atrasadas.component";
+import { AndamentoPComponent } from "./adm/home-adm/pendencia/andamento-p/andamento-p.component";
+import { GerenciaComponent } from "./gerencia/gerencia.component";
+import { AutenticacaoGuardServiceGerencia } from "./services/autenticacao-guard-gerente.service";
+import { GerenciaHomeComponent } from "./gerencia/gerencia-home/gerencia-home.component";
+import { RelatoriosComponent } from "./adm/home-adm/relatorios/relatorios.component";
 
 export const ROUTES: Routes = [
   {path:'', component: HomeComponent},
@@ -45,10 +51,14 @@ export const ROUTES: Routes = [
     {path: 'equipamento', component: EquipamentoComponent},
     {path: 'manu-adm', component: ManutecaoAdmComponent},
     {path: 'requisicoes', component: NovasRequisicoesComponent},
+    {path: 'relatorios',  component: RelatoriosComponent},
     {path: 'pendencias', component: PendenciaComponent, children:[
       {path: '', component: NovaPendenciaComponent},
       {path: 'nova', component: NovaPendenciaComponent},
       {path: 'concluidas', component: ListarComponent},
+      {path: 'canceladas', component: CanceladasComponent},
+      {path: 'atrasadas', component: AtrasadasComponent},
+      {path: 'andamento', component: AndamentoPComponent},
       {path: 'mudar-safra',component: MudarSafraComponent}
     ]}
  ] },
@@ -69,5 +79,16 @@ export const ROUTES: Routes = [
     {path: 'pendencia-atual', component: PendenciaAtualComponent},
     {path: 'pendencia-atrasada', component: PendenciaAtrasadaComponent},
     {path: 'pendencia-concluida', component: PendenciaConcluidaComponent}
+  ]},
+  {path: 'gerencia', component: GerenciaComponent, canActivate:[AutenticacaoGuardServiceGerencia], children:[
+    {path: 'pendencia-andamento', component: AndamentoPComponent},
+    {path: 'pendencia-concluidas', component: ListarComponent},
+    {path: 'pendencia-canceladas', component: CanceladasComponent},
+    {path: 'pendencia-atrasadas', component: AtrasadasComponent},
+    {path: 'mudar-safra', component: MudarSafraComponent},
+    {path: 'equipamento', component: EquipamentoComponent},
+    {path: 'manutencao', component: ManutecaoAdmComponent},
+    {path: 'home', component: GerenciaHomeComponent},
+    {path: 'relatorios', component: RelatoriosComponent}
   ]}
 ]

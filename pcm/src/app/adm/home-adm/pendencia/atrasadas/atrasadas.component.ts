@@ -4,14 +4,15 @@ import { Pendencia } from 'src/app/model/pendencia';
 import { PendenciaUsuario } from 'src/app/model/pendencia_usuario';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Response } from '@angular/http';
 
 @Component({
-  selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css'],
+  selector: 'app-atrasadas',
+  templateUrl: './atrasadas.component.html',
+  styleUrls: ['./atrasadas.component.css'],
   providers: [PendenciaService]
 })
-export class ListarComponent implements OnInit {
+export class AtrasadasComponent implements OnInit {
 
   public pendencias: Pendencia[]
   public pendencia: Pendencia
@@ -29,11 +30,11 @@ export class ListarComponent implements OnInit {
   })
 
   constructor(
-    private pendenciaService: PendenciaService
+    private pendenciaService: PendenciaService,
   ) { }
 
   ngOnInit() {
-    this.pendenciaService.getConcluidasAll().subscribe(
+    this.pendenciaService.getAtrasadas().subscribe(
       (pendencias: Pendencia[])=>{
         this.pendencias = pendencias
         console.log(pendencias)
@@ -71,4 +72,18 @@ export class ListarComponent implements OnInit {
     this.pendencias_usuarios = []
   }
 
+  public cancelarPendencia(): void{
+    this.pendenciaService.cancelarPendencia(this.pendencia).subscribe(
+      (response: Response)=>{
+        let index = this.pendencias.indexOf(this.pendencia)
+        this.pendencias.splice(index,1)
+      },
+      (err:any)=>{
+        console.log(err)
+      },
+      ()=>{
+        this.visualizarPend = false
+      }
+    )
+  }
 }

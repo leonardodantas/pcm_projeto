@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-5">
+    <h3 class="text-center font-weight-bold text-uppercase text-white">PENDENCIAS</h3>
+    <table class="table table-bordered table-sm bg-light">
+        <thead>
+          <tr>
+            <th scope="col">ANDAMENTO</th>
+            <th scope="col">CANCELADAS</th>
+            <th scope="col">FINALIZADAS</th>
+            <th scope="col">ATRASADAS</th>
+            <th scope="col">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td> <a  class="text-decoration-none text-dark"> {{pendenciaAndamento}} </a>  </td>
+            <td> <a   class="text-decoration-none text-dark"> {{pendenciaCancelada}} </a> </td>
+            <td> <a   class="text-decoration-none text-dark"> {{pendenciaFinalizada}}  </a> </td>
+            <td> <a   class="text-decoration-none text-dark"> {{pendenciaAtrasada}} </a> </td>
+            <td> <a   class="text-decoration-none text-dark"> {{pendenciaTotal}}  </a> </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="border border-dark rounded bg-secondary table-hover pt-1 pb-4 mt-3">
+      <h3 class="text-center font-weight-bold text-uppercase text-white">EQUIPAMENTOS</h3>
+      <table class="table table-bordered table-sm bg-light">
+          <thead>
+            <tr>
+              <th scope="col">LIVRE</th>
+              <th scope="col">ALUGADOS</th>
+              <th scope="col">MANUTENÇÃO</th>
+              <th scope="col">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td><a class="text-decoration-none text-dark"> {{ equipamentoLivre }} </a></td>
+              <td><a class="text-decoration-none text-dark"> {{ equipamentoAlugado }}  </a></td>
+              <td><a class="text-decoration-none text-dark"> {{ equipamentoManutencao }}  </a></td>
+              <td><a class="text-decoration-none text-dark"> {{ equipamentoTotal }} </a></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>

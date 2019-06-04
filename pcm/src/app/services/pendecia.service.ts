@@ -174,6 +174,73 @@ export class PendenciaService{
     })))
   }
 
+  public getConcluidasAll(): Observable<Pendencia[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/concluidas/`)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getAndamento(): Observable<Pendencia[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/andamento/`)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getCanceladas(): Observable<Pendencia[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/canceladas/`)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getAtrasadas(): Observable<Pendencia[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/atrasadas/`)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public getInfosPendencias(id: number): Observable<PendenciaUsuario[]>{
+
+    return this.http.get(`http://localhost:3000/pendencia/informacoes/` + id)
+    .pipe(map((response: Response)=>{
+      return response.json()
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+  public cancelarPendencia(pendencia: Pendencia): Observable<Response>{
+
+    let headers = new Headers()
+    headers.append('Content-type', 'application/json')
+
+    return this.http.put(`http://localhost:3000/pendencia/cancelar`,
+    JSON.stringify(pendencia),
+    new RequestOptions({ headers:headers }))
+    .pipe(map((response: Response)=>{
+      return response
+    }, catchError((err:any)=>{
+      return err
+    })))
+  }
+
+
+
 
 
 }

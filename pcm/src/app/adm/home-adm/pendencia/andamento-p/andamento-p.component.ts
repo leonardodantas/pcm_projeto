@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { PendenciaService } from 'src/app/services/pendecia.service';
-import { Pendencia } from 'src/app/model/pendencia';
-import { PendenciaUsuario } from 'src/app/model/pendencia_usuario';
-import { FormGroup, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { PendenciaUsuario } from 'src/app/model/pendencia_usuario';
+import { Pendencia } from 'src/app/model/pendencia';
+import { FormGroup, FormControl } from '@angular/forms';
+import { PendenciaService } from 'src/app/services/pendecia.service';
+import { Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css'],
+  selector: 'app-andamento-p',
+  templateUrl: './andamento-p.component.html',
+  styleUrls: ['./andamento-p.component.css'],
   providers: [PendenciaService]
 })
-export class ListarComponent implements OnInit {
+export class AndamentoPComponent implements OnInit {
 
   public pendencias: Pendencia[]
   public pendencia: Pendencia
@@ -29,14 +31,13 @@ export class ListarComponent implements OnInit {
   })
 
   constructor(
-    private pendenciaService: PendenciaService
+    private pendenciaService: PendenciaService,
   ) { }
 
   ngOnInit() {
-    this.pendenciaService.getConcluidasAll().subscribe(
+    this.pendenciaService.getAndamento().subscribe(
       (pendencias: Pendencia[])=>{
         this.pendencias = pendencias
-        console.log(pendencias)
       }
     )
   }
@@ -69,6 +70,21 @@ export class ListarComponent implements OnInit {
     this.visualizarPend = false
     this.form_detalhes.reset()
     this.pendencias_usuarios = []
+  }
+
+  public cancelarPendencia(): void{
+    this.pendenciaService.cancelarPendencia(this.pendencia).subscribe(
+      (response: Response)=>{
+        let index = this.pendencias.indexOf(this.pendencia)
+        this.pendencias.splice(index,1)
+      },
+      (err:any)=>{
+        console.log(err)
+      },
+      ()=>{
+        this.visualizarPend = false
+      }
+    )
   }
 
 }
